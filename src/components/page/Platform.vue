@@ -1,13 +1,19 @@
 <template>
   <div class="platform">
-    <h1> Platofrom Demo1 </h1>
- 
+    <topnav></topnav>
+    <!-- <h1> Platofrom Demo1 </h1> -->
+    
   </div>
 </template>
 
 <script>
+import topnav from '@/components/common/nav'
 export default {
-  name: 'platform'
+
+  name: 'platform',
+  components:{
+    topnav
+  }
   
 }
 </script>

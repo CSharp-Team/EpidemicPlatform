@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <!-- <topNav></topNav> -->
+    <!-- <topnav></topnav> -->
     <router-view/>
     <!-- <router-link to="/register">注册</router-link>
     <router-link to="/distriMap">疫情分布地图</router-link> -->
-    
   </div>
 </template>
 
 <script>
-import cmap from '@/components/page/distributionMap'
+import cmap from '@/components/common/distributionMap'
 import beifenmap from '@/components/page/beifen'
+import topnav from '@/components/common/nav'
+
 
 export default {
   name: 'App',
   components:{
-    cmap,beifenmap
+    cmap,beifenmap,topnav
   }
 }
 </script>
