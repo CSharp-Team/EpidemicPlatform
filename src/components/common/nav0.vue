@@ -40,7 +40,7 @@
                 </el-form-item>
 
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                  <el-input v-model="form.password" autocomplete="off" placeholder="请输入密码"></el-input>
+                  <el-input v-model="form.password" show-password autocomplete="off" placeholder="请输入密码"></el-input>
                 </el-form-item>
 
                 <el-button  @click="registerClick()">注册</el-button>
@@ -94,7 +94,8 @@ export default {
     registerClick(){
         this.dialogFormVisible = false;
        
-          this.$router.replace('/register')
+        // this.$router.replace('/register')
+         this.$router.push({path: 'register'})
     }
   }
 };

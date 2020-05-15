@@ -14,12 +14,12 @@
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="3">
         <div class="grid-content bg-purple">
-          <el-menu-item index="distriMap">疫情供需平台</el-menu-item>
+          <el-menu-item index="/home">疫情供需平台</el-menu-item>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple-light">
-          <el-menu-item index="1"></el-menu-item>
+          <!-- <el-menu-item index="1"></el-menu-item> -->
         </div>
       </el-col>
       <el-col :span="3">
