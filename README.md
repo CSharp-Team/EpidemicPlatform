@@ -1,6 +1,7 @@
 # platform
 
 > A Vue.js project of COVID-19
+> 自行删除多余的引用
 
 ## Build Setup
 
