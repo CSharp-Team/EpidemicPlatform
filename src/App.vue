@@ -9,14 +9,13 @@
 
 <script>
 import cmap from '@/components/common/distributionMap'
-import beifenmap from '@/components/page/beifen'
 import topnav from '@/components/common/nav'
 
 
 export default {
   name: 'App',
   components:{
-    cmap,beifenmap,topnav
+    cmap,topnav
   }
 }
 </script>
