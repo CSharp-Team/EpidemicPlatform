@@ -44,7 +44,7 @@
                 </el-form-item>
 
                 <el-button  @click="registerClick()">注册</el-button>
-                  <el-button type="primary" @click="dialogFormVisible = false">登录</el-button>
+                  <el-button type="primary" @click="loginClick()">登录</el-button>
                
               </el-form>
             
@@ -96,6 +96,10 @@ export default {
        
         // this.$router.replace('/register')
          this.$router.push({path: 'register'})
+    },
+    loginClick(){
+        this.dialogFormVisible = false;
+        this.$router.push({path: 'home'})
     }
   }
 };
