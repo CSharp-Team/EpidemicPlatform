@@ -7,14 +7,8 @@ import distriMap from '@/components/common/distributionMap'
 import nav from '@/components/common/nav'
 import initialPage from '@/components/page/initialPage'
 import home from '@/components/page/home'
-<<<<<<< HEAD
-import need from '@/components/page/need'
-import give from '@/components/page/give'
-
-=======
 import give from '@/components/page/give'
 import need from '@/components/page/need'
->>>>>>> 46c2b06f12286e8c1348ce011ea7feb9e23613a5
 
 Vue.use(Router)
 
