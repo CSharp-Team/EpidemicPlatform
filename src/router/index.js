@@ -7,7 +7,7 @@ import distriMap from '@/components/common/distributionMap'
 import nav from '@/components/common/nav'
 import initialPage from '@/components/page/initialPage'
 import home from '@/components/page/home'
-import give from '@/components/page/home'
+import give from '@/components/page/give'
 import need from '@/components/page/need'
 
 Vue.use(Router)
@@ -37,7 +37,7 @@ export default new Router({
       name:'give',
       component:give
     },{
-      path:'need',
+      path:'/need',
       name:'need',
       component:need
     }

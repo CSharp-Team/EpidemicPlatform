@@ -14,7 +14,7 @@
 </template>
 <script>
  import vForm from '../common/form'
- import vNav from '..//common/nav'
+ import vNav from '../common/nav'
   export default {
     components:{
     vForm,vNav
