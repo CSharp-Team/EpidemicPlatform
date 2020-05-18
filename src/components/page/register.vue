@@ -220,20 +220,20 @@ export default {
     submitForm(formName) {
       var self = this;
       this.$refs[formName].validate(valid => {
-        var path = "/info/getSupplyByUser?user=Ming";
+        
+        var path = "/g/register";
         if (valid) {
-          // axios
-          //   .post(path, { "Name": self.registerForm.username,
-          //   "Password": self.registerForm.pass,
-          //   "PhoneNumber": '123546' })
-          //   .then(response => {
-          //     self.$message({
-          //       message: "注册成功",
-          //       type: "success"
-          //     });
-          //   })
-          //   .catch(e => self.$message.error(e.response.data));
-          alert("成功！")
+          axios
+            .post(path, { "Name": self.registerForm.username,
+            "Password": self.registerForm.pass,
+            "PhoneNumber": '123546' })
+            .then(response => {
+              self.$message({
+                message: "注册成功",
+                type: "success"
+              });
+            })
+            .catch(e => self.$message.error(e.response.data));
         } else {
           console.log("error submit!!");
           return false;

@@ -13,13 +13,12 @@ module.exports = {
     proxyTable: {
       '/g': {
         target: "https://localhost:5001/api/platform",
-        // target: "http://localhost:8080/GradeSystem",
         changeOrigin: true,
         pathRewrite: {
-              '^/g': ''
+          '^/g': ''
         },
-      "secure": false,
-}
+        "secure": false,
+      }
     },
 
     // Various Dev Server settings
@@ -30,7 +29,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

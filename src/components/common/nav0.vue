@@ -40,25 +40,29 @@
                 </el-form-item>
 
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                  <el-input v-model="form.password" show-password autocomplete="off" placeholder="请输入密码"></el-input>
+                  <el-input
+                    v-model="form.password"
+                    show-password
+                    autocomplete="off"
+                    placeholder="请输入密码"
+                  ></el-input>
                 </el-form-item>
 
-                <el-button  @click="registerClick()">注册</el-button>
-                  <el-button type="primary" @click="loginClick()">登录</el-button>
-               
+                <el-button @click="registerClick()">注册</el-button>
+                <el-button type="primary" @click="loginClick()">登录</el-button>
               </el-form>
-            
-            <!-- <el-row>
+
+              <!-- <el-row>
               <el-col :span="3">
                   <div class="login_register">注册</div>
               </el-col>
-            </el-row> -->
+              </el-row>-->
               <!-- <div slot="footer" class="dialog-footer">
 
                   
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="dialogFormVisible = false">登录</el-button>
-              </div> -->
+              </div>-->
             </el-dialog>
           </el-menu-item>
         </div>
@@ -68,6 +72,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "topnav0",
   data() {
@@ -82,7 +87,8 @@ export default {
         delivery: false,
         type: [],
         resource: "",
-        desc: ""
+        desc: "",
+        loginResult: []
       },
       formLabelWidth: "80px"
     };
@@ -91,15 +97,31 @@ export default {
     onSubmit() {
       console.log("submit!");
     },
-    registerClick(){
-        this.dialogFormVisible = false;
-       
-        // this.$router.replace('/register')
-         this.$router.push({path: 'register'})
+    registerClick() {
+      this.dialogFormVisible = false;
+
+      // this.$router.replace('/register')
+      this.$router.push({ path: "register" });
     },
-    loginClick(){
-        this.dialogFormVisible = false;
-        this.$router.push({path: 'home'})
+    loginClick() {
+      var self = this;
+      var path = "/g/login";
+      axios
+        .post(path, { Name: self.form.name, Password: self.form.password })
+        .then(response => {
+          var result = response.data["ret"];
+          if (result == "login successfully") {
+            self.$message({
+              message: "登录成功",
+              type: "success"
+            });
+            this.dialogFormVisible = false;
+            this.$router.push({ path: "home" });
+          } else {
+            self.$message.error("用户名或密码错误");
+          }
+        })
+        .catch(e => self.$message.error(e.response.data));
     }
   }
 };
@@ -109,8 +131,8 @@ export default {
 .customWith {
   width: 25%;
 }
-.login_register{
-    color: #909399;
+.login_register {
+  color: #909399;
 }
 </style>
 
