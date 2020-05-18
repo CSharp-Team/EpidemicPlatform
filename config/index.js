@@ -15,6 +15,7 @@ module.exports = {
         target: "http://localhost:5001/api/platform",
         // target: "http://localhost:8080/GradeSystem",
         // target: "http://api.douban.com/v2",
+        // target: "http://localhost:5001/weatherforecast",
         changeOrigin: true,
         ws:true,
         pathRewrite: {
