@@ -14,35 +14,18 @@
     </div>
 
     <div class="displayInfo">
-      <el-card class="box-card box1"  header="供求动态">
-      
+      <el-card class="box-card box1" header="供求动态">
         <!-- <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div> -->
         <div class="supplyTable">
-             <el-table
-    :data="tableData"
-    height="250"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="name"
-      label="物资名称"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="num"
-      label="数量"
-      width="100">
-    </el-table-column>
-    <el-table-column
-      prop="person"
-      label="供给人">
-    </el-table-column>
-  </el-table>
+          <el-table :data="tableData" height="250" border style="width: 100%">
+            <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
+            <el-table-column prop="num" label="数量" width="100"></el-table-column>
+            <el-table-column prop="person" label="供给人"></el-table-column>
+          </el-table>
         </div>
       </el-card>
 
-      <el-card class="box-card box2"  header="需求动态">
-        
+      <el-card class="box-card box2" header="需求动态">
         <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
       </el-card>
     </div>
@@ -62,62 +45,59 @@ export default {
       input2: "",
       input3: "",
       select: "",
-      tableData: [{
-         name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-         name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-         name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-           name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-           name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-          name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }, {
-          name:'KN95口罩',
-         num:'2000只',
-         person:'WHU'
-        }]
-      
+      tableData: [
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        }
+      ]
     };
   },
-  methods:{
-      search(){
-        var result='';
-        var self = this;
-        // var path = "info/getSupplyByUser?user=Ming";
-        // var path="https://localhost:5001/api/platform/getSupplyByUser?user=Ming"
-        // var path = "/g/grade.do";
-        var path="/g/getSupplyByUser?user=Ming"
+  methods: {
+    search() {
+      var result = "";
+      var self = this;
+      // var path = "info/getSupplyByUser?user=Ming";
+      // var path="https://localhost:5001/api/platform/getSupplyByUser?user=Ming"
+      // var path = "/g/grade.do";
+      var path = "/g/getSupplyByUser?user=Ming";
 
-         axios({
-        url: path,
-        method: "GET",
-        headers: {
-          Authorization: "Bearer 5llcq3GiwABUg-Fxs...",
-          Accept: "application/json"
-        }
-      })
-        .then(response => 
-        console.log(response.data)
-        )
-        .catch(res1 => {
-          console.log(res1, "res1");
-        });
-      }
+      axios
+        .get(path)
+        .then(response => console.log(response.data))
+        .catch(e => self.$message.error(e.response.data));
+    }
   }
 };
 </script>
@@ -133,44 +113,41 @@ export default {
   width: 90%;
   offset: 10%;
   margin-left: 5%;
-
 }
-
 
 .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 18px;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-    display: table;
-    content: "";
-  }
-  .clearfix:after {
-    clear: both;
-    float: left;
-  }
-
-  .box-card {
-    width: 480px;
-  }
-
-.box1{
-    width: 44%;
-    margin-top: 30px;
-    margin-left: 5%;
-    float: left;
+  font-size: 14px;
 }
 
-.box2{
-    width: 44%;
-    margin-top: 30px;
-    margin-left: 2%;
-    float: left;
+.item {
+  margin-bottom: 18px;
+}
 
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+  float: left;
+}
+
+.box-card {
+  width: 480px;
+}
+
+.box1 {
+  width: 44%;
+  margin-top: 30px;
+  margin-left: 5%;
+  float: left;
+}
+
+.box2 {
+  width: 44%;
+  margin-top: 30px;
+  margin-left: 2%;
+  float: left;
 }
 </style>
