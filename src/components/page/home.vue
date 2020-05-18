@@ -9,7 +9,7 @@
           <el-option label="供求" value="1"></el-option>
           <el-option label="需求" value="2"></el-option>
         </el-select>
-        <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
       </el-input>
     </div>
 
@@ -51,6 +51,7 @@
 
 <script>
 import topnav from "@/components/common/nav";
+import axios from "axios";
 export default {
   components: {
     topnav
@@ -92,6 +93,31 @@ export default {
         }]
       
     };
+  },
+  methods:{
+      search(){
+        var result='';
+        var self = this;
+        // var path = "info/getSupplyByUser?user=Ming";
+        // var path="https://localhost:5001/api/platform/getSupplyByUser?user=Ming"
+        // var path = "/g/grade.do";
+        var path="/g/getSupplyByUser?user=Ming"
+
+         axios({
+        url: path,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer 5llcq3GiwABUg-Fxs...",
+          Accept: "application/json"
+        }
+      })
+        .then(response => 
+        console.log(response.data)
+        )
+        .catch(res1 => {
+          console.log(res1, "res1");
+        });
+      }
   }
 };
 </script>

@@ -12,7 +12,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/g': {
-        target: "http://localhost:8080/GradeSystem",
+        target: "http://localhost:5001/api/platform",
+        // target: "http://localhost:8080/GradeSystem",
+        // target: "http://api.douban.com/v2",
         changeOrigin: true,
         ws:true,
         pathRewrite: {

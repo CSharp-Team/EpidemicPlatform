@@ -34,7 +34,12 @@
           </el-form-item>
           <el-form-item label="验证码" prop="code">
             <el-col :span="16">
-              <el-input v-model="registerForm.code" placeholder="请输入验证码" maxlength="4"></el-input>
+              <el-input
+                v-model="registerForm.code"
+                placeholder="请输入验证码"
+                maxlength="4"
+                minlength="4"
+              ></el-input>
             </el-col>
             <el-col :span="4" offset="1">
               <el-button plain id="checkCode" @click="createCode()">ABEQ</el-button>
@@ -47,7 +52,7 @@
         </el-form>
       </div>
 
-  <!-- <div class="initRegister">
+      <!-- <div class="initRegister">
     <el-row>
         <el-col :span="4" :offset="6" class="regiserRow" align="middle">
           <i class="icon iconfont icon-yonghuming"></i>
@@ -105,6 +110,7 @@
 
 <script>
 import topnav0 from "@/components/common/nav0";
+import axios from "axios";
 export default {
   components: {
     topnav0
@@ -202,6 +208,7 @@ export default {
         "Y",
         "Z"
       ); //随机数
+
       for (var i = 0; i < codeLength; i++) {
         //循环操作
         var charIndex = Math.floor(Math.random() * 36); //取得随机数的索引
@@ -211,9 +218,22 @@ export default {
     },
 
     submitForm(formName) {
+      var self = this;
       this.$refs[formName].validate(valid => {
+        var path = "/info/getSupplyByUser?user=Ming";
         if (valid) {
-          alert("submit!");
+          // axios
+          //   .post(path, { "Name": self.registerForm.username,
+          //   "Password": self.registerForm.pass,
+          //   "PhoneNumber": '123546' })
+          //   .then(response => {
+          //     self.$message({
+          //       message: "注册成功",
+          //       type: "success"
+          //     });
+          //   })
+          //   .catch(e => self.$message.error(e.response.data));
+          alert("成功！")
         } else {
           console.log("error submit!!");
           return false;
