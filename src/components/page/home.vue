@@ -16,8 +16,8 @@
     <div class="displayInfo">
       <el-card class="box-card box1" header="供求动态">
         <!-- <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div> -->
-        <div class="supplyTable">
-          <el-table :data="tableData" height="250" border style="width: 100%">
+        <div class="dataTable">
+          <el-table :data="supplyTable" height="250" border style="width: 100%">
             <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
             <el-table-column prop="num" label="数量" width="100"></el-table-column>
             <el-table-column prop="person" label="供给人"></el-table-column>
@@ -26,7 +26,13 @@
       </el-card>
 
       <el-card class="box-card box2" header="需求动态">
-        <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
+         <div class="dataTable">
+          <el-table :data="requireTable" height="250" border style="width: 100%">
+            <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
+            <el-table-column prop="num" label="数量" width="100"></el-table-column>
+            <el-table-column prop="person" label="供给人"></el-table-column>
+          </el-table>
+        </div>
       </el-card>
     </div>
   </div>
@@ -45,7 +51,43 @@ export default {
       input2: "",
       input3: "",
       select: "",
-      tableData: [
+      supplyTable: [
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        },
+        {
+          name: "KN95口罩",
+          num: "2000只",
+          person: "WHU"
+        }
+      ], requireTable: [
         {
           name: "KN95口罩",
           num: "2000只",
@@ -92,6 +134,7 @@ export default {
       // var path="https://localhost:5001/api/platform/getSupplyByUser?user=Ming"
       // var path = "/g/grade.do";
       var path = "/g/getSupplyByUser?user=Ming";
+      // var path="/g"
 
       axios
         .get(path)

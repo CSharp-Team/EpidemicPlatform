@@ -9,6 +9,8 @@ import initialPage from '@/components/page/initialPage'
 import home from '@/components/page/home'
 import give from '@/components/page/give'
 import need from '@/components/page/need'
+import message from '@/components/page/message'
+import myPage from '@/components/page/myPage'
 
 Vue.use(Router)
 
@@ -41,6 +43,14 @@ export default new Router({
       name:'need',
       component:need
       //17：53 更新
+    },{
+      path:'/myPage',
+      name:'myPage',
+      component:myPage
+    },{
+      path:'/message',
+      name:'message',
+      component:message
     }
   ]
 })

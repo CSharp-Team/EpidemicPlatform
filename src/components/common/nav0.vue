@@ -11,7 +11,7 @@
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="3">
         <div class="grid-content bg-purple">
-          <el-menu-item index>疫情供需平台</el-menu-item>
+          <el-menu-item index="/home">疫情供需平台</el-menu-item>
         </div>
       </el-col>
       <el-col :span="6">

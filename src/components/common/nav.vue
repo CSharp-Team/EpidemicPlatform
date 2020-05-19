@@ -12,6 +12,12 @@
     active-text-color="#ffd04b"
   >
     <el-row type="flex" class="row-bg" justify="end">
+
+       <el-col :span="3">
+        <div class="grid-content bg-purple">
+          <el-menu-item index="/">疫情地图</el-menu-item>
+        </div>
+      </el-col>
       <el-col :span="3">
         <div class="grid-content bg-purple">
           <el-menu-item index="/home">疫情供需平台</el-menu-item>
@@ -33,7 +39,13 @@
       </el-col>
       <el-col :span="3">
         <div class="grid-content bg-purple">
-          <el-menu-item index="4">我的信息</el-menu-item>
+          <el-menu-item index="/myPage">我的</el-menu-item>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <!-- <i class="el-icon-message message"></i> -->
+         <div class="grid-content bg-purple">
+          <el-menu-item index="/message">消息</el-menu-item>
         </div>
       </el-col>
     </el-row>
@@ -41,6 +53,7 @@
 </template>
 
 <script>
+
 export default {
   name: "topnav",
   data() {
@@ -64,4 +77,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.message{
+  font-size: 40px;
+}
+</style>
 
