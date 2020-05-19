@@ -29,7 +29,7 @@
  </el-form-item>
  </el-col>
   <el-col :span="4"><div>
-       <el-button type="danger" @click.prevent="removeDomain(domain)">删除</el-button>
+       <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
        </div></el-col>
  </el-row>
  <el-row>
@@ -51,9 +51,9 @@
 
 
   <el-form-item>
-    <el-button type="primary" @click="onSubmit">提交</el-button>
-    <el-button @click="addDomain">新增物品类型</el-button>
-    <el-button @click="resetForm('itemInfo')">重置</el-button>
+    <el-button round type="primary" @click="onSubmit">提交</el-button>
+    <el-button round @click="addDomain">新增物品类型</el-button>
+    <el-button round @click="resetForm('itemInfo')">重置</el-button>
   </el-form-item>
 </el-form>
 
