@@ -28,10 +28,17 @@
        <el-button @click.prevent="removeDomain(domain)">删除</el-button>
        </div></el-col>
  </el-row>
+ <el-row>
+ <el-col :span="9">
+ <el-form-item>
+ </el-form-item>
+ </el-col>
+ <el-col :span="6">
 
   <el-form-item label="联系方式">
     <el-input v-model="itemInfo.tel"></el-input>
-  </el-form-item>
+
+  </el-form-item>  </el-col> </el-row>
  <el-form-item label="省市 :" prop="description">
                              <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
                              </el-cascader>
@@ -140,7 +147,7 @@ options: [{
 
 </script>
 
-<style scoped>
+
 
   .remove-item{
     color: red;
