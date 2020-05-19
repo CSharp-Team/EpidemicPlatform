@@ -36,9 +36,6 @@
                              <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
                              </el-cascader>
                          </el-form-item>
-   <el-form-item>
-      <el-button type="primary" @click="onSubmit">立即提交</el-button>
-    </el-form-item>
 
 
 
@@ -89,16 +86,19 @@ options: [{
                      selectedOptions: [],
            labelPosition: 'top',
            itemInfo: {
-              domains:{
+              domains:[{
                 name:'',
                 number:1
-                },
+                }],
 
              tel: ''
            }
          };
        },
        methods: {
+        resetForm(formName) {
+             this.$refs[formName].resetFields();
+           },
          removeDomain(item) {
               var index = this.itemInfo.domains.indexOf(item);
               if (index !== -1) {
