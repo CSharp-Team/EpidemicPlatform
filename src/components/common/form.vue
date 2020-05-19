@@ -5,7 +5,11 @@
 
 <el-form :label-position="labelPosition" label-width="80px" :model="itemInfo" ref="itemInfo">
 <el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
-<el-col :span="10">
+<el-col :span="6">
+ <el-form-item>
+ </el-form-item>
+ </el-col>
+<el-col :span="6">
  <el-form-item label="物品类型"  :key="domain.key"
                                 :prop="'domains.' + index + '.name'">
     <el-select v-model="domain.name">
@@ -18,14 +22,14 @@
       </el-select>
   </el-form-item>
  </el-col>
- <el-col :span="10">
+ <el-col :span="6">
  <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
                                        :prop="'domains.' + index + '.number'">
  <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
  </el-form-item>
  </el-col>
   <el-col :span="4"><div>
-       <el-button @click.prevent="removeDomain(domain)">删除</el-button>
+       <el-button type="danger" @click.prevent="removeDomain(domain)">删除</el-button>
        </div></el-col>
  </el-row>
  <el-row>
