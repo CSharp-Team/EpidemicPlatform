@@ -1,13 +1,36 @@
 <template>
-<el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-  <el-form-item label="物品名称">
-    <el-input v-model="formLabelAlign.name"></el-input>
+
+
+
+
+<el-form :label-position="labelPosition" label-width="80px" :model="itemInfo" ref="itemInfo">
+<el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
+<el-col :span="10">
+ <el-form-item label="物品类型"  :key="domain.key"
+                                :prop="'domains.' + index + '.name'">
+    <el-select v-model="domain.name">
+        <el-option
+          v-for="item in options"
+          :key="item.name"
+          :label="item.label"
+          :value="item.name">
+        </el-option>
+      </el-select>
   </el-form-item>
-  <el-form-item label="物品数量">
-    <el-input v-model="formLabelAlign.number"></el-input>
-  </el-form-item>
+ </el-col>
+ <el-col :span="10">
+ <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
+                                       :prop="'domains.' + index + '.number'">
+ <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
+ </el-form-item>
+ </el-col>
+  <el-col :span="4"><div>
+       <el-button @click.prevent="removeDomain(domain)">删除</el-button>
+       </div></el-col>
+ </el-row>
+
   <el-form-item label="联系方式">
-    <el-input v-model="formLabelAlign.tel"></el-input>
+    <el-input v-model="itemInfo.tel"></el-input>
   </el-form-item>
  <el-form-item label="省市 :" prop="description">
                              <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
@@ -16,7 +39,17 @@
    <el-form-item>
       <el-button type="primary" @click="onSubmit">立即提交</el-button>
     </el-form-item>
+
+
+
+  <el-form-item>
+    <el-button type="primary" @click="onSubmit">提交</el-button>
+    <el-button @click="addDomain">新增物品类型</el-button>
+    <el-button @click="resetForm('itemInfo')">重置</el-button>
+  </el-form-item>
 </el-form>
+
+
 </template>
 
 <script>
@@ -35,18 +68,53 @@ from 'element-china-area-data';
 
        data() {
          return {
+options: [{
+                              name: 'N95 Mask',
+                              label: 'N95口罩'
+                            }, {
+                              name: 'surgery mask',
+                              label: '医用外科口罩'
+                            }, {
+                              name: 'mask',
+                              label: '普通口罩'
+                            }, {
+                              name: 'protection glasses',
+                              label: '护目镜'
+                            }, {
+                              name: 'protection suit',
+                              label: '防护服'
+                            }],
+
           provinceOptions: provinceAndCityData,
                      selectedOptions: [],
-           labelPosition: 'right',
-           formLabelAlign: {
-             name: '',
-             number: '',
+           labelPosition: 'top',
+           itemInfo: {
+              domains:{
+                name:'',
+                number:1
+                },
+
              tel: ''
            }
          };
        },
        methods: {
-
+         removeDomain(item) {
+              var index = this.itemInfo.domains.indexOf(item);
+              if (index !== -1) {
+                this.itemInfo.domains.splice(index, 1);
+              }
+            },
+            addDomain() {
+              this.itemInfo.domains.push({
+                name: '',
+                number:1,
+                key: Date.now()
+              });
+            },
+        handleChange1(value) {
+                      console.log(value);
+                    },
         handleChange(val) {
                    console.log(val)
                    this.ruleForm.province = CodeToText[val[0]]
@@ -73,5 +141,14 @@ from 'element-china-area-data';
 </script>
 
 <style scoped>
+
+  .remove-item{
+    color: red;
+  }
+  .submit-btn{
+    text-align: center;
+    margin-left: -60px;
+  }
+</style>
 
 </style>
