@@ -2,7 +2,6 @@
   <div class="page">
     <topnav></topnav>
     <leftnav></leftnav>
-    
   </div>
 </template>
 

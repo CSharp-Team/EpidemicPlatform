@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row class="tac leftnav">
-      <el-col :span="5">
+      <el-col :span="24">
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
@@ -41,6 +41,6 @@ export default {
 <style>
 .leftnav {
   margin-left: 5%;
-  margin-top: 5%;
+  /* margin-top: 5%; */
 }
 </style>
