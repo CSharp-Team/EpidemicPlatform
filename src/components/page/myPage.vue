@@ -1,22 +1,25 @@
 <template>
-  <div>
+  <div class="page">
     <topnav></topnav>
-    <h1> 我的 </h1>
+    <leftnav></leftnav>
     
   </div>
 </template>
 
 <script>
 import topnav from '@/components/common/nav'
+import leftnav from '@/components/common/leftNav'
 export default {
   components:{
-    topnav
+    topnav,leftnav
   }
   
 }
 </script>
 
 
-<style scoped>
-
+<style>
+.page{
+  background-color: #f8f8f8;
+}
 </style>
