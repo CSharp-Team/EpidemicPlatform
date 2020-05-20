@@ -11,6 +11,7 @@ import give from '@/components/page/give'
 import need from '@/components/page/need'
 import message from '@/components/page/message'
 import myPage from '@/components/page/myPage'
+import search from '@/components/page/search'
 
 Vue.use(Router)
 
@@ -51,6 +52,10 @@ export default new Router({
       path:'/message',
       name:'message',
       component:message
+    },{
+      path:'/search',
+      name:'search',
+      component:search
     }
   ]
 })
