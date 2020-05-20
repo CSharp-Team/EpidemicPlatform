@@ -1,61 +1,55 @@
 <template>
-
-
-
-
 <el-form :label-position="labelPosition" label-width="80px" :model="itemInfo" ref="itemInfo">
-<el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
-<el-col :span="6">
- <el-form-item>
- </el-form-item>
- </el-col>
-<el-col :span="6">
- <el-form-item label="物品类型"  :key="domain.key"
+  <el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
+    <el-col :span="6">
+      <el-form-item>
+      </el-form-item>
+    </el-col>
+    <el-col :span="6">
+       <el-form-item label="物品类型"  :key="domain.key"
                                 :prop="'domains.' + index + '.name'">
-    <el-select v-model="domain.name">
-        <el-option
-          v-for="item in options"
-          :key="item.name"
-          :label="item.label"
-          :value="item.name">
-        </el-option>
-      </el-select>
-  </el-form-item>
- </el-col>
- <el-col :span="6">
- <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
+           <el-select v-model="domain.name">
+               <el-option
+                v-for="item in options"
+                :key="item.name"
+                :label="item.label"
+                :value="item.name">
+               </el-option>
+          </el-select>
+       </el-form-item>
+    </el-col>
+    <el-col :span="6">
+        <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
                                        :prop="'domains.' + index + '.number'">
- <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
- </el-form-item>
- </el-col>
-  <el-col :span="4"><div>
+            <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
+        </el-form-item>
+    </el-col>
+    <el-col :span="4"><div>
        <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
        </div></el-col>
  </el-row>
  <el-row>
- <el-col :span="9">
- <el-form-item>
- </el-form-item>
- </el-col>
- <el-col :span="6">
-
-  <el-form-item label="联系方式">
-    <el-input v-model="itemInfo.tel"></el-input>
-
-  </el-form-item>  </el-col> </el-row>
- <el-form-item label="省市 :" prop="description">
+    <el-col :span="9">
+      <el-form-item>
+      </el-form-item>
+    </el-col>
+    <el-col :span="6">
+      <el-form-item label="联系方式">
+          <el-input v-model="itemInfo.tel"></el-input>
+      </el-form-item>  </el-col> </el-row>
+      <el-form-item label="省市 :" prop="description">
                              <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
                              </el-cascader>
                          </el-form-item>
 
 
 
-  <el-form-item>
-    <el-button round type="primary" @click="onSubmit">提交</el-button>
-    <el-button round @click="addDomain">新增物品类型</el-button>
-    <el-button round @click="resetForm('itemInfo')">重置</el-button>
-  </el-form-item>
-</el-form>
+      <el-form-item>
+        <el-button round type="primary" @click="onSubmit">提交</el-button>
+        <el-button round @click="addDomain">新增物品类型</el-button>
+        <el-button round @click="resetForm('itemInfo')">重置</el-button>
+      </el-form-item>
+  </el-form>
 
 
 </template>
