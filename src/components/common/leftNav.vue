@@ -3,16 +3,17 @@
     <el-row class="tac leftnav">
       <el-col :span="24">
         <el-menu
-          default-active="2"
+        router
+          default-active="/myPage"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
         >
-          <el-menu-item index="1">
+          <el-menu-item index="/myPage">
             <i class="el-icon-menu"></i>
             <span slot="title">我的信息<i class="el-icon-arrow-right"></i></span>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="/myPage/supplyAndDemand">
             <i class="el-icon-menu"></i>
             <span slot="title">我的供给与需求<i class="el-icon-arrow-right"></i></span>
             
@@ -41,6 +42,5 @@ export default {
 <style>
 .leftnav {
   margin-left: 5%;
-  /* margin-top: 5%; */
 }
 </style>
