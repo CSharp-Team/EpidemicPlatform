@@ -4,7 +4,7 @@
       <el-col :span="24">
         <el-menu
         router
-          default-active="/myPage"
+          default-active="/myPage/supplyAndDemand"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
