@@ -25,6 +25,8 @@
         </el-form-item>
     </el-col>
     <el-col :span="4"><div>
+       <el-form-item label=" ">
+       </el-form-item>
        <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
        </div></el-col>
  </el-row>
@@ -41,9 +43,6 @@
                              <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
                              </el-cascader>
                          </el-form-item>
-
-
-
       <el-form-item>
         <el-button round type="primary" @click="onSubmit">提交</el-button>
         <el-button round @click="addDomain">新增物品类型</el-button>
