@@ -2,9 +2,10 @@
   <div>
     <el-row class="tac leftnav">
       <el-col :span="24">
+        <!-- 加了router之后 导航栏高亮不再变化 -->
         <el-menu
-        router
-          default-active="/myPage/supplyAndDemand"
+         router
+    :default-active="$route.path"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"

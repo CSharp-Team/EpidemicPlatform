@@ -176,9 +176,9 @@ export default {
   float: left;
 }
 
-.box-card {
+/* .box-card {
   width: 480px;
-}
+} */
 
 .box1 {
   width: 44%;
