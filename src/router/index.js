@@ -13,6 +13,7 @@ import message from '@/components/page/message'
 import myPage from '@/components/page/myPage'
 import search from '@/components/page/search'
 import supplyAndDemand from '@/components/page/mySupplyDemand'
+import detail from '@/components/page/detail'
 
 Vue.use(Router)
 
@@ -60,6 +61,9 @@ export default new Router({
     },{
       path:'/myPage/supplyAndDemand',
       component:supplyAndDemand
+    },{
+      path:'/detail',
+      component:detail
     }
   ]
 })

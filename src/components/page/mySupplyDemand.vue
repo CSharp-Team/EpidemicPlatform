@@ -38,6 +38,11 @@
                   <el-table-column label="商品 ID" prop="id"></el-table-column>
                   <el-table-column label="联系人" prop="contact"></el-table-column>
                   <el-table-column label="地区" prop="region"></el-table-column>
+                  <el-table-column label="详情" prop>
+                    <template slot-scope="props">
+                      <el-button @click="detailClick(props.row)">查看详情</el-button>
+                    </template>
+                  </el-table-column>
                 </el-table>
               </el-tab-pane>
               <el-tab-pane label="我的需求" name="demand">
@@ -73,7 +78,7 @@ export default {
   },
   data() {
     return {
-      activeName: "demand",
+      activeName: "supply",
       supplyData: [
         {
           id: 1,
@@ -118,25 +123,19 @@ export default {
           ]
         }
       ]
-      // tableData: [ {
-      //     id: 3,
-      //     date: '2016-05-01',
-      //     name: '王小虎',
-      //     address: '上海市普陀区金沙江路 1519 弄',
-      //     children: [{
-      //         id: 31,
-      //         date: '2016-05-01',
-      //         name: '王小虎',
-      //         address: '上海市普陀区金沙江路 1519 弄'
-      //       }, {
-      //         id: 32,
-      //         date: '2016-05-01',
-      //         name: '王小虎',
-      //         address: '上海市普陀区金沙江路 1519 弄'
-      //     }]
-      //   }
-      //   ]
     };
+  },
+  methods: {
+    detailClick(data) {
+      this.$router.push({ 
+        path: "../detail",
+        query:{
+          id:data.id
+        }
+        });
+      console.log(data.id);
+      
+    }
   }
 };
 </script>
