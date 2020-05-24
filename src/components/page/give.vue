@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
- import vForm from '../common/form'
+ import vForm from '../common/giveForm'
  import vNav from '../common/nav'
   export default {
     components:{

@@ -145,7 +145,7 @@ options: [{
 </script>
 
 
-
+<style>
   .remove-item{
     color: red;
   }
@@ -155,4 +155,3 @@ options: [{
   }
 </style>
 
-</style>
