@@ -111,11 +111,15 @@ export default {
         .then(response => {
           var result = response.data["ret"];
           if (result == "login successfully") {
+            // var json=response.data
+            // console.log(json)
+            // this.$store.commit('ADD_COUNT',json.data.token);
             self.$message({
               message: "登录成功",
               type: "success"
             });
             this.dialogFormVisible = false;
+            this.$store.commit('isLogin',response.data["ret"]);
             this.$router.push({ path: "home" });
           } else {
             self.$message.error("用户名或密码错误");

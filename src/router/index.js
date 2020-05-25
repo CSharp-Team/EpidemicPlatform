@@ -18,6 +18,7 @@ import detail from '@/components/page/detail'
 Vue.use(Router)
 
 export default new Router({
+  
   routes: [
     {
       path: '/',
@@ -36,20 +37,32 @@ export default new Router({
     },{
       path:'/home',
       name:'home',
-      component:home
+      component:home,
+      meta:{
+        requireAuth:true
+      }
     },{
       path:'/give',
       name:'give',
-      component:give
+      component:give,
+      meta:{
+        requireAuth:true
+      }
     },{
       path:'/need',
       name:'need',
-      component:need
+      component:need,
+      meta:{
+        requireAuth:true
+      }
       //17：53 更新
     },{
       path:'/myPage',
       name:'myPage',
-      component:myPage
+      component:myPage,
+      meta:{
+        requireAuth:true
+      }
     },{
       path:'/message',
       name:'message',
