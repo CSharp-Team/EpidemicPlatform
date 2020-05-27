@@ -17,7 +17,7 @@ import detail from '@/components/page/detail'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   
   routes: [
     {
@@ -80,3 +80,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to,from,next) => { 
+  if(to.path==="/" || to.path==="/registry")
+    return next()
+
+  //获取token
+  else  {
+    const tokenStr = window.sessionStorage.getItem('token')
+    if (!tokenStr) {
+      return next("/")
+    }
+    next()
+  }
+})
+
+export default router

@@ -111,6 +111,7 @@ export default {
         .then(response => {
           var result = response.data["ret"];
           if (result == "login successfully") {
+            window.sessionStorage.setItem('token',response.data["ret"]);
             // var json=response.data
             // console.log(json)
             // this.$store.commit('ADD_COUNT',json.data.token);

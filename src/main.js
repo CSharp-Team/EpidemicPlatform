@@ -80,7 +80,7 @@ new Vue({
     {
       localStorage.setItem("isLogin",'');
     }
-    this.$store.state.isLoin=localStorage.getItem("isLogin");
+    this.$store.state.isLogin=localStorage.getItem("isLogin");
   },
   template: '<App/>',
 })
