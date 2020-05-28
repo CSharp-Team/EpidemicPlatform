@@ -119,9 +119,9 @@ export default {
               message: "登录成功",
               type: "success"
             });
-            this.dialogFormVisible = false;
-            this.$store.commit('isLogin',response.data["ret"]);
-            this.$router.push({ path: "home" });
+            self.dialogFormVisible = false;
+            self.$router.push({ path: "home" });
+            self.$store.commit('isLogin',response.data["ret"]);
           } else {
             self.$message.error("用户名或密码错误");
           }

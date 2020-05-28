@@ -14,30 +14,19 @@
             </div>
             <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
               <el-tab-pane label="我的供给" name="supply">
-                <!-- <el-table
-                  :data="tableData"
-                  style="width: 100%;margin-bottom: 20px;"
-                  row-key="id"
-                  border
-                  default-expand-all
-                  :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
-                  >
-                   <el-table-column label="商品 ID" prop="id"></el-table-column>
-                  <el-table-column label="联系人" prop="contact"></el-table-column>
-                  <el-table-column label="地区" prop="region"></el-table-column>
-                </el-table>-->
-                <el-table :data="demandData" style="width: 100%">
+                <el-table :data="supplyData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
-                      <el-table :data="props.row.items">
+                      <el-table :data="props.row.supplyItems">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
-                        <el-table-column label="数量" prop="num"></el-table-column>
+                        <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
                     </template>
                   </el-table-column>
-                  <el-table-column label="商品 ID" prop="id"></el-table-column>
-                  <el-table-column label="联系人" prop="contact"></el-table-column>
-                  <el-table-column label="地区" prop="region"></el-table-column>
+                  <el-table-column label="供给单号" prop="supplyId"></el-table-column>
+                  <el-table-column label="联系人" prop="user"></el-table-column>
+                  <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
+                  <el-table-column label="地区" prop="address"></el-table-column>
                   <el-table-column label="详情" prop>
                     <template slot-scope="props">
                       <el-button @click="detailClick(props.row)">查看详情</el-button>
@@ -46,18 +35,24 @@
                 </el-table>
               </el-tab-pane>
               <el-tab-pane label="我的需求" name="demand">
-                <el-table :data="supplyData" style="width: 100%">
+                <el-table :data="demandData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
-                      <el-table :data="props.row.items">
+                      <el-table :data="props.row.needItems">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
-                        <el-table-column label="数量" prop="num"></el-table-column>
+                        <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
                     </template>
                   </el-table-column>
-                  <el-table-column label="商品 ID" prop="id"></el-table-column>
-                  <el-table-column label="联系人" prop="contact"></el-table-column>
-                  <el-table-column label="地区" prop="region"></el-table-column>
+                  <el-table-column label="需求单号" prop="needId"></el-table-column>
+                  <el-table-column label="联系人" prop="user"></el-table-column>
+                  <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
+                  <el-table-column label="地区" prop="address"></el-table-column>
+                  <el-table-column label="详情" prop>
+                    <template slot-scope="props">
+                      <el-button @click="detailClick(props.row)">查看详情</el-button>
+                    </template>
+                  </el-table-column>
                 </el-table>
               </el-tab-pane>
             </el-tabs>
@@ -71,6 +66,7 @@
 <script>
 import topnav from "@/components/common/nav";
 import leftnav from "@/components/common/leftNav";
+import axios from "axios";
 export default {
   components: {
     topnav,
@@ -79,50 +75,8 @@ export default {
   data() {
     return {
       activeName: "supply",
-      supplyData: [
-        {
-          id: 1,
-          contact: "yang",
-          region: "湖北武汉",
-          items: [
-            { name: "KN95口罩", num: "20000" },
-            { name: "KN95口罩", num: "20000" },
-            { name: "KN95口罩", num: "20000" }
-          ]
-        },
-        {
-          id: 2,
-          contact: "yang",
-          region: "湖北武汉",
-          items: [
-            { name: "KN95口罩", num: "10000" },
-            { name: "N95口罩", num: "20000" },
-            { name: "KN95口罩", num: "20000" }
-          ]
-        }
-      ],
-      demandData: [
-        {
-          id: 20,
-          contact: "yang",
-          region: "湖北武汉",
-          items: [
-            { name: "N95口罩", num: "20000" },
-            { name: "N95口罩", num: "20000" },
-            { name: "N95口罩", num: "20000" }
-          ]
-        },
-        {
-          id: 2,
-          contact: "yang",
-          region: "湖北武汉",
-          items: [
-            { name: "KN95口罩", num: "10000" },
-            { name: "N95口罩", num: "20000" },
-            { name: "KN95口罩", num: "20000" }
-          ]
-        }
-      ]
+      supplyData:[],
+      demandData:[]
     };
   },
   methods: {
@@ -135,7 +89,35 @@ export default {
         });
       console.log(data.id);
       
+    },
+    getTableData(){
+      var user='yang';  //user为当前的用户名
+      var url1='/g/getNeedByName';
+      url1=url1+'?name='+user;
+      var self=this;
+       axios
+        .get(url1)
+        .then(response => {
+         console.log(response)
+         console.log(response.data)
+         self.demandData=response.data
+        })
+        .catch(e => self.$message.error(e.response.data));
+      
+      var url2='/g/getSupplyByName';
+      url2=url2+'?name='+user;
+      var self=this;
+       axios
+        .get(url2)
+        .then(response => {
+         console.log(response)
+         self.supplyData=response.data
+        })
+        .catch(e => self.$message.error(e.response.data));
     }
+  },
+  mounted(){
+    this.getTableData();
   }
 };
 </script>

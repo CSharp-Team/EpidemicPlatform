@@ -17,20 +17,58 @@
       <el-card class="box-card box1" header="供求动态">
         <!-- <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div> -->
         <div class="dataTable">
-          <el-table :data="supplyTable" height="250" border style="width: 100%">
+          <!-- <el-table :data="supplyTable" height="250" border style="width: 100%">
             <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
             <el-table-column prop="num" label="数量" width="100"></el-table-column>
             <el-table-column prop="person" label="供给人"></el-table-column>
+          </el-table>-->
+          <el-table :data="supplyData" style="width: 100%">
+            <el-table-column type="expand">
+              <template slot-scope="props">
+                <el-table :data="props.row.supplyItems">
+                  <el-table-column label="物品名称" prop="name"></el-table-column>
+                  <el-table-column label="数量" prop="count"></el-table-column>
+                </el-table>
+              </template>
+            </el-table-column>
+            <el-table-column label="供给单号" prop="supplyId"></el-table-column>
+            <el-table-column label="联系人" prop="user"></el-table-column>
+            <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
+            <el-table-column label="地区" prop="address"></el-table-column>
+            <el-table-column label="详情" prop>
+              <template slot-scope="props">
+                <el-button @click="detailClick(props.row)">查看详情</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </el-card>
 
       <el-card class="box-card box2" header="需求动态">
-         <div class="dataTable">
-          <el-table :data="requireTable" height="250" border style="width: 100%">
+        <div class="dataTable">
+          <!-- <el-table :data="requireTable" height="250" border style="width: 100%">
             <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
             <el-table-column prop="num" label="数量" width="100"></el-table-column>
             <el-table-column prop="person" label="供给人"></el-table-column>
+          </el-table>-->
+          <el-table :data="demandData" style="width: 100%">
+            <el-table-column type="expand">
+              <template slot-scope="props">
+                <el-table :data="props.row.needItems">
+                  <el-table-column label="物品名称" prop="name"></el-table-column>
+                  <el-table-column label="数量" prop="count"></el-table-column>
+                </el-table>
+              </template>
+            </el-table-column>
+            <el-table-column label="需求单号" prop="needId"></el-table-column>
+            <el-table-column label="联系人" prop="user"></el-table-column>
+            <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
+            <el-table-column label="地区" prop="address"></el-table-column>
+              <el-table-column label="详情" prop>
+              <template slot-scope="props">
+                <el-button @click="detailClick(props.row)">查看详情</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </el-card>
@@ -51,82 +89,95 @@ export default {
       input2: "",
       input3: "",
       select: "",
-      supplyTable: [
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        }
-      ], requireTable: [
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        },
-        {
-          name: "KN95口罩",
-          num: "2000只",
-          person: "WHU"
-        }
-      ]
+      supplyData: [],
+      demandData: []
+      // supplyTable: [
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   }
+      // ],
+      // requireTable: [
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   },
+      //   {
+      //     name: "KN95口罩",
+      //     num: "2000只",
+      //     person: "WHU"
+      //   }
+      // ]
     };
   },
   methods: {
+     detailClick(data) {
+      this.$router.push({ 
+        path: "../detail",
+        query:{
+          id:data.id
+        }
+        });
+      console.log(data.id);
+      
+    },
     search() {
       var result = "";
       var self = this;
@@ -140,7 +191,32 @@ export default {
         .get(path)
         .then(response => console.log(response.data))
         .catch(e => self.$message.error(e.response.data));
+    },
+    getTableData() {
+      var url1 = "/g/getAllSupply";
+      var self = this;
+      axios
+        .get(url1)
+        .then(response => {
+          console.log(response);
+          console.log(response.data);
+          self.supplyData = response.data;
+        })
+        .catch(e => self.$message.error(e.response.data));
+
+      var url2 = "/g/getAllNeed";
+      var self = this;
+      axios
+        .get(url2)
+        .then(response => {
+          console.log(response);
+          self.demandData = response.data;
+        })
+        .catch(e => self.$message.error(e.response.data));
     }
+  },
+  mounted() {
+    this.getTableData();
   }
 };
 </script>
