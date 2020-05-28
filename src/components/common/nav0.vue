@@ -99,8 +99,6 @@ export default {
     },
     registerClick() {
       this.dialogFormVisible = false;
-
-      // this.$router.replace('/register')
       this.$router.push({ path: "register" });
     },
     loginClick() {
@@ -115,6 +113,7 @@ export default {
             // var json=response.data
             // console.log(json)
             // this.$store.commit('ADD_COUNT',json.data.token);
+            this.$store.commit('newAuthor',self.form.name)
             self.$message({
               message: "登录成功",
               type: "success"

@@ -17,6 +17,9 @@ const store=new Vuex.Store({
         isLogin(state,msg){
             state.isLogin=msg;
             localStorage.setItem("isLogin",msg);
+        },
+        dispUser(state){
+            console.log(state.user)
         }
     }
 })

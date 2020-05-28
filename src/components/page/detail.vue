@@ -66,13 +66,21 @@ export default {
     };
   },
   methods:{
-      getParams(){
-          this.id=this.$route.query.id
-          console.log(this.id)
+      // getParams(){
+      //     this.id=this.$route.query.id
+      //     console.log(this.id)
+      // },
+      getData(){
+        console.log("getData")
+        this.$store.commit('dispUser')
       }
   },
   created(){
       this.getParams()
+      
+  },
+  mounted(){
+    this.getData()
   }
 };
 </script>
