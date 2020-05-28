@@ -67,6 +67,7 @@
 import topnav from "@/components/common/nav";
 import leftnav from "@/components/common/leftNav";
 import axios from "axios";
+var self=this
 export default {
   components: {
     topnav,
@@ -92,6 +93,8 @@ export default {
     },
     getTableData(){
       var user='yang';  //user为当前的用户名
+      user=this.$store.state.user
+      console.log(user)
       var url1='/g/getNeedByName';
       url1=url1+'?name='+user;
       var self=this;
@@ -106,7 +109,6 @@ export default {
       
       var url2='/g/getSupplyByName';
       url2=url2+'?name='+user;
-      var self=this;
        axios
         .get(url2)
         .then(response => {
@@ -118,6 +120,7 @@ export default {
   },
   mounted(){
     this.getTableData();
+    self=this
   }
 };
 </script>

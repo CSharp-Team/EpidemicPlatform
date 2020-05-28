@@ -3,25 +3,25 @@
     <topnav></topnav>
 
     <el-row>
-      
       <el-col :span="20" offset="2">
         <div class="content">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>我的供给/需求</span>
             </div>
-                <el-table :data="supplyData" style="width: 100%">
+                 <el-table :data="localData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
-                      <el-table :data="props.row.items">
+                      <el-table :data="props.row.needItems">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
-                        <el-table-column label="数量" prop="num"></el-table-column>
+                        <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
                     </template>
                   </el-table-column>
-                  <el-table-column label="商品 ID" prop="id"></el-table-column>
-                  <el-table-column label="联系人" prop="contact"></el-table-column>
-                  <el-table-column label="地区" prop="region"></el-table-column>
+                  <el-table-column label="需求单号" prop="supplyId"></el-table-column>
+                  <el-table-column label="联系人" prop="user"></el-table-column>
+                  <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
+                  <el-table-column label="地区" prop="address"></el-table-column>
                 </el-table>
           </el-card>
 
@@ -30,18 +30,18 @@
             <div slot="header" class="clearfix">
               <span>匹配情况</span>
             </div>
-                <el-table :data="supplyData" style="width: 100%">
+                <el-table :data="localData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
                       <el-table :data="props.row.items">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
-                        <el-table-column label="数量" prop="num"></el-table-column>
+                        <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
                     </template>
                   </el-table-column>
-                  <el-table-column label="商品 ID" prop="id"></el-table-column>
-                  <el-table-column label="联系人" prop="contact"></el-table-column>
-                  <el-table-column label="地区" prop="region"></el-table-column>
+                  <el-table-column label="商品 ID" prop="supplyId"></el-table-column>
+                  <el-table-column label="联系人" prop="user"></el-table-column>
+                  <el-table-column label="地区" prop="address"></el-table-column>
                 </el-table>
           </el-card>
         </div>
@@ -52,17 +52,16 @@
 
 <script>
 import topnav from "@/components/common/nav";
+import axios from "axios";
 export default {
   components: {
-    topnav,
+    topnav
   },
   data() {
     return {
         localData:[],
         //与该需求/供给 匹配的数据
-        matchedData:[],
-        id:''
-        
+        matchedData:[]
     };
   },
   methods:{
@@ -72,15 +71,25 @@ export default {
       // },
       getData(){
         console.log("getData")
-        this.$store.commit('dispUser')
+        var user=this.$store.state.user
+        console.log(user)
+        var url1='/g/getSupplyByName';
+        url1=url1+'?name='+user;
+        axios
+        .get(url1)
+        .then(response => {
+         console.log(response)
+         self.localData=response.data
+        })
+        .catch(e => self.$message.error(e.response.data));
+
       }
   },
-  created(){
-      this.getParams()
-      
-  },
   mounted(){
+    // this.getParams()
+    self=this
     this.getData()
+    
   }
 };
 </script>
