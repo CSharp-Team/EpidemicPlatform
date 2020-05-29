@@ -88,9 +88,6 @@ option: [{
                               name: 'protection suit',
                               label: '防护服'
                             }],
-
-          provinceOptions: provinceAndCityData,
-                     selectedOptions: [],
            labelPosition: 'top',
            itemInfo: {
               domains:[{
@@ -124,7 +121,7 @@ option: [{
                     },
         handleChange(value) {
                  
-                    console.log(CodeToText[value[0]]) 
+                console.log(CodeToText[value[0]]) 
                 console.log(CodeToText[value[1]]) 
                 this.itemInfo.Address=CodeToText[value[1]]
                },

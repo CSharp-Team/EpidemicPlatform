@@ -10,7 +10,7 @@
                                 :prop="'domains.' + index + '.name'">
            <el-select v-model="domain.name">
                <el-option
-                v-for="item in options"
+                v-for="item in option"
                 :key="item.name"
                 :label="item.label"
                 :value="item.name">
@@ -40,8 +40,7 @@
           <el-input v-model="itemInfo.tel"></el-input>
       </el-form-item>  </el-col> </el-row>
       <el-form-item label="省市 :" prop="description">
-                             <el-cascader size="large" clearable class="customized_input_340" change-on-select :options="provinceOptions" v-model="selectedOptions" @change="handleChange">
-                             </el-cascader>
+                             <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>                   
                          </el-form-item>
       <el-form-item>
         <el-button round type="primary" @click="onSubmit">提交</el-button>
@@ -69,7 +68,9 @@ from 'element-china-area-data';
 
        data() {
          return {
-options: [{
+             options: provinceAndCityDataPlus,
+                selectedOptions: [],
+option: [{
                               name: 'N95 Mask',
                               label: 'N95口罩'
                             }, {
@@ -86,15 +87,13 @@ options: [{
                               label: '防护服'
                             }],
 
-          provinceOptions: provinceAndCityData,
-                     selectedOptions: [],
            labelPosition: 'top',
            itemInfo: {
               domains:[{
                 name:'',
                 number:1
                 }],
-
+            Address:'',
              tel: ''
            }
          };
@@ -117,27 +116,40 @@ options: [{
               });
             },
         handleChange1(value) {
-                      console.log(value);
+              console.log(value)
                     },
-        handleChange(val) {
-                   console.log(val)
-                   this.ruleForm.province = CodeToText[val[0]]
-                   this.ruleForm.city = CodeToText[val[1]]
-                   let sameProvince = provinceAndCityData.find((province)=>{
-                                           return province.label == data.province
-                                       })
-                                       let sameCity = sameProvince.children.find((city)=>{
-                                           return city.label == data.city
-                                       })
-                                       this.selectedOptions = [sameProvince.value,sameCity.value]
+        handleChange(value) {
+                console.log(CodeToText[value[0]]) 
+                console.log(CodeToText[value[1]]) 
+                this.itemInfo.Address=CodeToText[value[1]]
                },
-             onSubmit() {
+        onSubmit() {
                console.log('submit!');
-                this.$notify({
+                var self = this;
+                var path = "/g/addNeed";
+                 
+               axios.post(path,{
+                  "User":this.$store.state.user,
+                	"PhoneNumber":self.itemInfo.tel,
+	                "Time":"2020.05.21",
+                	"Address":self.itemInfo.Address,
+                	"NeedItems":self.itemInfo.domains
+               }) .then(response => {
+              self.$message({
+                message: "恭喜您提交成功",
+                type: "success"
+              });
+               self.$notify({
                          title: '恭喜您提交成功',
                          message: '',
                          type: 'success'
              })
+                })
+             .catch(e => self.$message.error(e.response.data));
+       
+     
+
+               
            }
      }
     }
