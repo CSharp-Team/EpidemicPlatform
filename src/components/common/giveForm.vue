@@ -135,25 +135,28 @@ options: [{
                },
         onSubmit() {
                console.log('submit!');
-                post("https://localhost:44300/api/Platform/addSupply",
-                {
-                  "User":'',
+                var self = this;
+                     this.$refs[formName].validate(valid => {
+
+                       var path = "/g/addSupply";
+                       if (valid) {
+               axios.post(path,{
+                  "User":this.$store.state.user,
                 	"PhoneNumber":"13793296780",
 	                "Time":"2020.05.21",
                 	"Address":"山东青岛",
                 	"SupplyItems":[{"Name":"口罩","Count":100},{"Name":"防护服","Count":50}]
+               })
+                
 
-                }
-                )
 
-        
                 this.$notify({
                          title: '恭喜您提交成功',
                          message: '',
                          type: 'success'
              })
            }
-     
+
      }
     }
 
