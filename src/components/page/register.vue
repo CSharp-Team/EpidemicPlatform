@@ -32,6 +32,9 @@
               placeholder="请再次输入密码"
             ></el-input>
           </el-form-item>
+          <el-form-item label="联系方式" prop="phoneNumber">
+            <el-input v-model="registerForm.phoneNumber" autocomplete="off" placeholder="请输入联系方式"></el-input>
+          </el-form-item>
           <el-form-item label="验证码" prop="code">
             <el-col :span="16">
               <el-input
@@ -232,7 +235,7 @@ export default {
           axios
             .post(path, { "Name": self.registerForm.username,
             "Password": self.registerForm.pass,
-            "PhoneNumber": '123546' })
+            "PhoneNumber": self.registerForm.phoneNumber })
             .then(response => {
               self.$message({
                 message: "注册成功",
