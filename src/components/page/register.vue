@@ -42,7 +42,7 @@
               ></el-input>
             </el-col>
             <el-col :span="4" offset="1">
-              <el-button plain id="checkCode" @click="createCode()">ABEQ</el-button>
+              <el-button plain id="PageCode" @click="createCode()">ABEQ</el-button>
             </el-col>
           </el-form-item>
           <el-form-item>
@@ -143,8 +143,13 @@ export default {
       }
     };
     var checkCode = (rule, value, callback) => {
+      var pageCode = document.getElementById("PageCode");
+      var text=pageCode.textContent
+      console.log(text)
       if (!value) {
         return callback(new Error("验证码不能为空"));
+      }else if(value.toLowerCase()!==text.toLowerCase()){
+        return callback(new Error("验证码输入错误！"));
       } else {
         callback();
       }
@@ -155,7 +160,8 @@ export default {
         pass: "",
         checkPass: "",
         repassword: "",
-        code: ""
+        code: "",
+        PhoneNumber:''
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
@@ -169,7 +175,7 @@ export default {
     createCode: function() {
       var Code = "";
       var codeLength = 4; //验证码的长度
-      var checkCode = document.getElementById("checkCode");
+      var pageCode = document.getElementById("PageCode");
       var random = new Array(
         0,
         1,
@@ -214,7 +220,7 @@ export default {
         var charIndex = Math.floor(Math.random() * 36); //取得随机数的索引
         Code += random[charIndex]; //根据索引取得随机数加到code上
       }
-      checkCode.textContent = Code; //把code值赋给验证码
+      pageCode.textContent = Code; //把code值赋给验证码
     },
 
     submitForm(formName) {
@@ -232,6 +238,7 @@ export default {
                 message: "注册成功",
                 type: "success"
               });
+              self.registerForm=[]
             })
             .catch(e => self.$message.error(e.response.data));
         } else {
@@ -270,7 +277,7 @@ export default {
   margin-top: 0px;
 }
 
-#checkCode {
+#PageCode {
   font-family: Arial;
   font-style: italic;
   font-weight: bold;

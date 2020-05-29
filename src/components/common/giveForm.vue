@@ -137,7 +137,7 @@ options: [{
                console.log('submit!');
                 post("https://localhost:44300/api/Platform/addSupply",
                 {
-                  "User":,
+                  "User":'',
                 	"PhoneNumber":"13793296780",
 	                "Time":"2020.05.21",
                 	"Address":"山东青岛",
