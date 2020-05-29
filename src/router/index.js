@@ -82,7 +82,7 @@ const router = new Router({
 })
 
 router.beforeEach((to,from,next) => { 
-  if(to.path==="/" || to.path==="/registry")
+  if(to.path==="/" || to.path==="/register")
     return next()
 
   //获取token
