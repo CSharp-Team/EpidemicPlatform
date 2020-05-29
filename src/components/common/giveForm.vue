@@ -54,7 +54,8 @@
 </template>
 
 <script>
-
+import axios from "axios";
+import { post } from '../../utils/request'
 import
 {
     provinceAndCityData,
@@ -65,6 +66,7 @@ import
     TextToCode
 }
 from 'element-china-area-data';
+import registerVue from '../page/register.vue';
     export default {
 
        data() {
@@ -103,13 +105,13 @@ options: [{
         resetForm(formName) {
              this.$refs[formName].resetFields();
            },
-         removeDomain(item) {
+        removeDomain(item) {
               var index = this.itemInfo.domains.indexOf(item);
               if (index !== -1) {
                 this.itemInfo.domains.splice(index, 1);
               }
             },
-            addDomain() {
+        addDomain() {
               this.itemInfo.domains.push({
                 name: '',
                 number:1,
@@ -131,14 +133,27 @@ options: [{
                                        })
                                        this.selectedOptions = [sameProvince.value,sameCity.value]
                },
-             onSubmit() {
+        onSubmit() {
                console.log('submit!');
+                post("https://localhost:44300/api/Platform/addSupply",
+                {
+                  "User":,
+                	"PhoneNumber":"13793296780",
+	                "Time":"2020.05.21",
+                	"Address":"山东青岛",
+                	"SupplyItems":[{"Name":"口罩","Count":100},{"Name":"防护服","Count":50}]
+
+                }
+                )
+
+        
                 this.$notify({
                          title: '恭喜您提交成功',
                          message: '',
                          type: 'success'
              })
            }
+     
      }
     }
 

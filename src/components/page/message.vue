@@ -1,8 +1,8 @@
 <template>
   <div>
     <topnav></topnav>
-    <h1> 消息 </h1>
-    
+
+
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   components:{
     topnav
   }
-  
+
 }
 </script>
 
