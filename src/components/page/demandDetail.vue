@@ -7,7 +7,7 @@
         <div class="content">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span>我的供给/需求</span>
+              <span>需求详情</span>
             </div>
             <el-table :data="localData" style="width: 100%">
               <el-table-column type="expand">
@@ -61,25 +61,20 @@ export default {
       localData: [],
       //与该需求/供给 匹配的数据
       matchedData: [],
-      type: "",
+    //   type: "",
       id: ""
     };
   },
   methods: {
     getParams() {
       self.id = self.$route.query.id;
-      self.type = self.$route.query.type;
-      console.log(self.type);
     },
     getData() {
       console.log("getData");
-      var user = this.$store.state.user;
-      console.log(user);
-      console.log(self.type)
-      if (self.type == 1) {
+      
         //需求
-        var url = "/g/Need/getNeedByName";
-        url = url + "?name=" + user;
+        var url = "/g/Need/getNeedById";
+        url = url + "?id=" + self.id;
         axios
           .get(url)
           .then(response => {
@@ -87,18 +82,7 @@ export default {
             self.localData = response.data;
           })
           .catch(e => self.$message.error(e.response.data));
-      } else {
-        //供给
-        var url1 = "/g/Supply/getSupplyByName";
-        url1 = url1 + "?name=" + user;
-        axios
-          .get(url1)
-          .then(response => {
-            console.log(response);
-            self.localData = response.data;
-          })
-          .catch(e => self.$message.error(e.response.data));
-      }
+    
     }
   },
   mounted() {

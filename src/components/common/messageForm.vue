@@ -63,16 +63,16 @@
           user = this.$store.state.user;
           var senturl = '/g/getSentMessage?name='+user;
           get(senturl)
-          .then(reponse=>{
+          .then(response=>{
               console.log(response)
-              self.sentMessage=reponse.data
+              self.sentMessage=response.data
           })
           
           var reciHandledurl = '/g/getReceiveMessageHandled?name='+user;
           get(reciHandledurl)
-          .then(reponse=>{
+          .then(response=>{
               console.log(response)
-              self.receiveMessageHandled=reponse.data
+              self.receiveMessageHandled=response.data
           })
 
           var unreciHandledurl = '/g/getReceiveMessageUnHandled?name='+user;

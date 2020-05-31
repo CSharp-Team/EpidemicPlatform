@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <topnav0></topnav0>
         <distriMap></distriMap>
     </div>
@@ -14,4 +14,9 @@ export default {
     }
 }
 </script>
+
+<style>
+
+
+</style>
 

@@ -230,7 +230,7 @@ export default {
       var self = this;
       this.$refs[formName].validate(valid => {
         
-        var path = "/g/register";
+        var path = "/g/User/register";
         if (valid) {
           axios
             .post(path, { "Name": self.registerForm.username,
@@ -263,7 +263,8 @@ export default {
   color: #fff;
   font-size: 10px;
   height: 100%;
-  background-color: #1d8ce0;
+  /* background-color: #1d8ce0; */
+  background-color: #E9EEF3;
   width: 100%;
   line-height: 20px;
 }

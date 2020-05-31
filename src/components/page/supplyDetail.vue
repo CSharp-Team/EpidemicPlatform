@@ -7,21 +7,11 @@
         <div class="content">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span>我的供给/需求</span>
+              <span>供给详情</span>
             </div>
-            <el-table :data="localData" style="width: 100%">
-              <el-table-column type="expand">
-                <template slot-scope="props">
-                  <el-table :data="props.row.needItems">
-                    <el-table-column label="物品名称" prop="name"></el-table-column>
-                    <el-table-column label="数量" prop="count"></el-table-column>
-                  </el-table>
-                </template>
-              </el-table-column>
-              <el-table-column label="需求单号" prop="supplyId"></el-table-column>
-              <el-table-column label="联系人" prop="user"></el-table-column>
-              <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
-              <el-table-column label="地区" prop="address"></el-table-column>
+            <el-table :data="localData.items" style="width: 100%">
+              <el-table-column label="物品名称" prop="name"></el-table-column>
+              <el-table-column label="数量" prop="count"></el-table-column>
             </el-table>
           </el-card>
 
@@ -29,7 +19,7 @@
             <div slot="header" class="clearfix">
               <span>匹配情况</span>
             </div>
-            <el-table :data="localData" style="width: 100%">
+            <el-table :data="matchedData" style="width: 100%">
               <el-table-column type="expand">
                 <template slot-scope="props">
                   <el-table :data="props.row.items">
@@ -41,6 +31,11 @@
               <el-table-column label="商品 ID" prop="supplyId"></el-table-column>
               <el-table-column label="联系人" prop="user"></el-table-column>
               <el-table-column label="地区" prop="address"></el-table-column>
+              <el-table-column label="详情" prop>
+                    <template slot-scope="props">
+                      <el-button @click="detailClick(props.row)">申请</el-button>
+                    </template>
+              </el-table-column>
             </el-table>
           </el-card>
         </div>
@@ -52,6 +47,7 @@
 <script>
 import topnav from "@/components/common/nav";
 import axios from "axios";
+var self = this;
 export default {
   components: {
     topnav
@@ -61,51 +57,57 @@ export default {
       localData: [],
       //与该需求/供给 匹配的数据
       matchedData: [],
-      type: "",
       id: ""
     };
   },
   methods: {
     getParams() {
-      self.id = self.$route.query.id;
-      self.type = self.$route.query.type;
-      console.log(self.type);
+      console.log("getparams");
+      this.id = self.$route.query.id;
+      console.log(self.$route.query);
+      console.log("获取self.id");
+      console.log(self.id);
     },
     getData() {
       console.log("getData");
-      var user = this.$store.state.user;
-      console.log(user);
-      console.log(self.type)
-      if (self.type == 1) {
-        //需求
-        var url = "/g/Need/getNeedByName";
-        url = url + "?name=" + user;
+      //供给
+      var url = "/g/Supply/getSupplyById";
+      url = url + "?id=" + this.id;
+      setTimeout(() => {
         axios
-          .get(url)
-          .then(response => {
-            console.log(response);
-            self.localData = response.data;
-          })
-          .catch(e => self.$message.error(e.response.data));
-      } else {
-        //供给
-        var url1 = "/g/Supply/getSupplyByName";
-        url1 = url1 + "?name=" + user;
-        axios
-          .get(url1)
-          .then(response => {
-            console.log(response);
-            self.localData = response.data;
-          })
-          .catch(e => self.$message.error(e.response.data));
-      }
+        .get(url)
+        .then(response => {
+          console.log(response);
+          self.localData = response.data;
+          // self.$set(self,'localData',response.data)
+        })
+      .catch(e => self.$message.error(e.response.data));
+      }, 1000);
+      
+
+      // console.log("1111111111111")
+      // console.log(self.localData);
+    },
+    getMatchedData(){
+       
+      var url2 = "/g/Supply/needMatch";
+      console.log("this.id="+this.id)
+      url2=url2+"?id="+this.id
+      axios
+        .get(url2)
+        .then(response => {
+         console.log(response)
+         self.matchedData=response.data
+        })
+        .catch(e => self.$message.error(e.response.data));
     }
+
   },
   mounted() {
     self = this;
-    this.getParams();
-    
+    self.getParams();
     this.getData();
+    this.getMatchedData();
   }
 };
 </script>

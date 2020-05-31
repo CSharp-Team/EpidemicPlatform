@@ -315,14 +315,14 @@ export default {
       this.chinachart.setOption(chartOption);
     },
     getEchartData(){
-      var url='/g/getDays';
+      var url='/g/Map/getDays';
        axios
         .get(url)
         .then(response => {
         self.days=response.data
         })
         .catch(e => self.$message.error(e.response.data));
-      var url='/g/getNews';
+      var url='/g/Map/getNews';
        axios
         .get(url)
         .then(response => {
@@ -331,7 +331,7 @@ export default {
         
         })
         .catch(e => self.$message.error(e.response.data));
-      var url='/g/getPeopleNum';
+      var url='/g/Map/getPeopleNum';
        axios
         .get(url)
         .then(response => {

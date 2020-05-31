@@ -14,6 +14,8 @@ import myPage from '@/components/page/myPage'
 import search from '@/components/page/search'
 import supplyAndDemand from '@/components/page/mySupplyDemand'
 import detail from '@/components/page/detail'
+import supplyDetail from '@/components/page/supplyDetail'
+import demandDetail from '@/components/page/demandDetail'
 
 Vue.use(Router)
 
@@ -77,6 +79,14 @@ const router = new Router({
     },{
       path:'/detail',
       component:detail
+    },
+    {
+      path:'/supplyDetail',
+      component:supplyDetail
+    },
+    {
+      path:'/demandDetail',
+      component:demandDetail
     }
   ]
 })

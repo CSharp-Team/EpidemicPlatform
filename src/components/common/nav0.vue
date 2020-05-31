@@ -103,7 +103,7 @@ export default {
     },
     loginClick() {
       var self = this;
-      var path = "/g/login";
+      var path = "/g/User/login";
       axios
         .post(path, { Name: self.form.name, Password: self.form.password })
         .then(response => {

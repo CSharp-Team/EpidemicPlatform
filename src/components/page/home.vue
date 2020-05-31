@@ -25,7 +25,7 @@
           <el-table :data="supplyData" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-table :data="props.row.supplyItems">
+                <el-table :data="props.row.items">
                   <el-table-column label="物品名称" prop="name"></el-table-column>
                   <el-table-column label="数量" prop="count"></el-table-column>
                 </el-table>
@@ -54,7 +54,7 @@
           <el-table :data="demandData" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-table :data="props.row.needItems">
+                <el-table :data="props.row.items">
                   <el-table-column label="物品名称" prop="name"></el-table-column>
                   <el-table-column label="数量" prop="count"></el-table-column>
                 </el-table>
@@ -91,80 +91,6 @@ export default {
       select: "",
       supplyData: [],
       demandData: []
-      // supplyTable: [
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   }
-      // ],
-      // requireTable: [
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   },
-      //   {
-      //     name: "KN95口罩",
-      //     num: "2000只",
-      //     person: "WHU"
-      //   }
-      // ]
     };
   },
   methods: {
@@ -175,7 +101,6 @@ export default {
           id:data.id
         }
         });
-      console.log(data.id);
       
     },
     search() {
@@ -184,7 +109,7 @@ export default {
       // var path = "info/getSupplyByUser?user=Ming";
       // var path="https://localhost:5001/api/platform/getSupplyByUser?user=Ming"
       // var path = "/g/grade.do";
-      var path = "/g/getSupplyByUser?user=Ming";
+      var path = "/g/Supply/getSupplyByUser?user=Ming";
       // var path="/g"
 
       axios
@@ -193,7 +118,7 @@ export default {
         .catch(e => self.$message.error(e.response.data));
     },
     getTableData() {
-      var url1 = "/g/getAllSupply";
+      var url1 = "/g/Supply/getAllSupply";
       var self = this;
       axios
         .get(url1)
@@ -204,7 +129,7 @@ export default {
         })
         .catch(e => self.$message.error(e.response.data));
 
-      var url2 = "/g/getAllNeed";
+      var url2 = "/g/Need/getAllNeed";
       var self = this;
       axios
         .get(url2)

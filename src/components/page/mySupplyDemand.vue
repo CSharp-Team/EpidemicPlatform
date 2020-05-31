@@ -17,7 +17,7 @@
                 <el-table :data="supplyData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
-                      <el-table :data="props.row.supplyItems">
+                      <el-table :data="props.row.items">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
                         <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
@@ -38,7 +38,7 @@
                 <el-table :data="demandData" style="width: 100%">
                   <el-table-column type="expand">
                     <template slot-scope="props">
-                      <el-table :data="props.row.needItems">
+                      <el-table :data="props.row.items">
                         <el-table-column label="物品名称" prop="name"></el-table-column>
                         <el-table-column label="数量" prop="count"></el-table-column>
                       </el-table>
@@ -82,20 +82,39 @@ export default {
   },
   methods: {
     detailClick(data) {
-      this.$router.push({ 
-        path: "../detail",
+      console.log(data.type)
+      
+      if(data.type==1)
+      {
+        var id2=data.needId
+        this.$router.push({ 
+        path: "../demandDetail",
         query:{
-          id:data.id
+          id:id2
         }
         });
-      console.log(data.id);
+        console.log("data.needId")
+        console.log(data.needId)
+      }else{
+        var id2=data.supplyId
+        this.$router.push({ 
+        path: "../supplyDetail",
+        query:{
+          // id:data.suppplyId
+          id:id2
+        }
+        });
+        console.log("data.suppplyId")
+        console.log(data.supplyId)
+      }
+     
       
     },
     getTableData(){
       var user='yang';  //user为当前的用户名
       user=this.$store.state.user
       console.log(user)
-      var url1='/g/getNeedByName';
+      var url1='/g/Need/getNeedByName';
       url1=url1+'?name='+user;
       var self=this;
        axios
@@ -107,7 +126,7 @@ export default {
         })
         .catch(e => self.$message.error(e.response.data));
       
-      var url2='/g/getSupplyByName';
+      var url2='/g/Supply/getSupplyByName';
       url2=url2+'?name='+user;
        axios
         .get(url2)
