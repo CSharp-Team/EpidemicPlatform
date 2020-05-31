@@ -20,8 +20,8 @@
     </el-col>
     <el-col :span="6">
         <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
-                                       :prop="'domains.' + index + '.number'">
-            <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
+                                       :prop="'domains.' + index + '.count'">
+            <el-input-number v-model="domain.count" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
         </el-form-item>
     </el-col>
     <el-col :span="4"><div>
@@ -93,7 +93,7 @@ option: [{
               domains:[{
                 id:1,
                 name:'',
-                number:1
+                count:1
                 }],
               Address:'',
              tel: ''
@@ -114,7 +114,7 @@ option: [{
               this.itemInfo.domains.push({
                 id:1,
                 name: '',
-                number:1,
+                count:1,
                 key: Date.now()
               });
             },
