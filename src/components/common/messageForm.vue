@@ -35,9 +35,7 @@
 </template>>
 <script>
     import axios from "axios"
-    import {post} from "../../utils/request"
-    import {get} from "../../utils/request"
-    var self=this
+
  export default {    
     data() {
       return {
@@ -54,32 +52,34 @@
       },
       ReciClick(Id){
           var url = '/g/confirm?MessageId='+Id
-          get(url).then(response=>{
+          axios.get(url).then(response=>{
               console.log(response)
           })
       },
       getdata(){
           var user = ' ';
           user = this.$store.state.user;
+          var self = this;
+
           var senturl = '/g/getSentMessage?name='+user;
-          get(senturl)
-          .then(reponse=>{
+          axios.get(senturl)
+          .then(response=>{
               console.log(response)
-              self.sentMessage=reponse.data
+              self.sentMessage=response.data
           })
           
           var reciHandledurl = '/g/getReceiveMessageHandled?name='+user;
-          get(reciHandledurl)
-          .then(reponse=>{
+          axios.get(reciHandledurl)
+          .then(response=>{
               console.log(response)
-              self.receiveMessageHandled=reponse.data
+              self.receiveMessageHandled=response.data
           })
 
           var unreciHandledurl = '/g/getReceiveMessageUnHandled?name='+user;
-          get(unreciHandledurl)
-          .then(reponse=>{
+          axios.get(unreciHandledurl)
+          .then(response=>{
               console.log(response)
-              self.receiveMessageUnHandled=reponse.data
+              self.receiveMessageUnHandled=response.data
           })
 
       }
