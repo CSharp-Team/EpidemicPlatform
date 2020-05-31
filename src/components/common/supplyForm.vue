@@ -136,7 +136,8 @@ option: [{
                   "User":this.$store.state.user,
                 	"PhoneNumber":self.itemInfo.tel,
 	                "Time":"2020.05.21",
-                	"Address":self.itemInfo.Address,
+                  "Address":self.itemInfo.Address,
+                  "Type":"1",
                 	"SupplyItems":self.itemInfo.domains
                }) .then(response => {
               self.$message({
