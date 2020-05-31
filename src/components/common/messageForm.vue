@@ -85,22 +85,14 @@
           var self = this;
 
           var senturl = '/g/getSentMessage?name='+user;
-<<<<<<< HEAD
-          get(senturl)
-=======
           axios.get(senturl)
->>>>>>> 60c686ffdbc1da07416a63519ebb4e66a887e827
           .then(response=>{
               console.log(response)
               self.sentMessage=response.data
           })
           
           var reciHandledurl = '/g/getReceiveMessageHandled?name='+user;
-<<<<<<< HEAD
-          get(reciHandledurl)
-=======
           axios.get(reciHandledurl)
->>>>>>> 60c686ffdbc1da07416a63519ebb4e66a887e827
           .then(response=>{
               console.log(response)
               self.receiveMessageHandled=response.data

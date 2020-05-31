@@ -90,7 +90,7 @@ export default {
         this.$router.push({ 
         path: "../demandDetail",
         query:{
-          id:id2
+          id:3
         }
         });
         console.log("data.needId")
@@ -101,7 +101,7 @@ export default {
         path: "../supplyDetail",
         query:{
           // id:data.suppplyId
-          id:id2
+          id:3
         }
         });
         console.log("data.suppplyId")

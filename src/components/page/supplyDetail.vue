@@ -57,6 +57,7 @@ export default {
       localData: [],
       //与该需求/供给 匹配的数据
       matchedData: [],
+      dataItems:[],
       id: ""
     };
   },
@@ -73,18 +74,22 @@ export default {
       //供给
       var url = "/g/Supply/getSupplyById";
       url = url + "?id=" + this.id;
-      setTimeout(() => {
         axios
         .get(url)
         .then(response => {
           console.log(response);
           self.localData = response.data;
           // self.$set(self,'localData',response.data)
+          for(var i=0;i<response.data.items.length;i++){
+            self.dataItems.push(response.data.items[i]);
+          }
         })
       .catch(e => self.$message.error(e.response.data));
-      }, 1000);
-      
 
+      console.log("\n\n\n")
+      console.log(self.dataItems)
+      // console.log(JSON.stringify(this.localData));
+      console.log("\n\n\n")
       // console.log("1111111111111")
       // console.log(self.localData);
     },
