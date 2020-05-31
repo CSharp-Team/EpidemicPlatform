@@ -64,21 +64,21 @@
           get(senturl)
           .then(reponse=>{
               console.log(response)
-              sekf.sentMessage=reponse.data
+              self.sentMessage=reponse.data
           }).catch(e=>this.$message.console.error(e.response.data))
           
           var reciHandledurl = '/g/getReceiveMessageHandled?name='+user;
           get(reciHandledurl)
           .then(reponse=>{
               console.log(response)
-              sekf.receiveMessageHandled=reponse.data
+              self.receiveMessageHandled=reponse.data
           }).catch(e=>this.$message.console.error(e.response.data))
 
           var unreciHandledurl = '/g/getReceiveMessageUnHandled?name='+user;
           get(unreciHandledurl)
           .then(reponse=>{
               console.log(response)
-              sekf.receiveMessageUnHandled=reponse.data
+              self.receiveMessageUnHandled=reponse.data
           }).catch(e=>this.$message.console.error(e.response.data))
 
       }
