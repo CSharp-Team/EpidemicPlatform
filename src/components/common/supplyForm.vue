@@ -91,6 +91,7 @@ option: [{
            labelPosition: 'top',
            itemInfo: {
               domains:[{
+                id:1,
                 name:'',
                 number:1
                 }],
@@ -111,6 +112,7 @@ option: [{
             },
         addDomain() {
               this.itemInfo.domains.push({
+                id:1,
                 name: '',
                 number:1,
                 key: Date.now()

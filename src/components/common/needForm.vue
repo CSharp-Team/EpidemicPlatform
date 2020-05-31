@@ -20,8 +20,8 @@
     </el-col>
     <el-col :span="6">
         <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
-                                       :prop="'domains.' + index + '.number'">
-            <el-input-number v-model="domain.number" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
+                                       :prop="'domains.' + index + '.count'">
+            <el-input-number v-model="domain.count" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
         </el-form-item>
     </el-col>
     <el-col :span="4"><div>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-
+import axios from "axios"
 import
 {
     provinceAndCityData,
@@ -90,8 +90,9 @@ option: [{
            labelPosition: 'top',
            itemInfo: {
               domains:[{
+                id:1,
                 name:'',
-                number:1
+                count:1
                 }],
             Address:'',
              tel: ''
@@ -110,8 +111,9 @@ option: [{
             },
             addDomain() {
               this.itemInfo.domains.push({
+                id: 1,
                 name: '',
-                number:1,
+                count:1,
                 key: Date.now()
               });
             },
@@ -133,7 +135,7 @@ option: [{
                 	"PhoneNumber":self.itemInfo.tel,
 	                "Time":"2020.05.21",
                 	"Address":self.itemInfo.Address,
-                	"NeedItems":self.itemInfo.domains
+                  "NeedItems":self.itemInfo.domains,
                }) .then(response => {
               self.$message({
                 message: "恭喜您提交成功",
