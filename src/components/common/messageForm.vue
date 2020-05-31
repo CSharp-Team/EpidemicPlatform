@@ -35,7 +35,8 @@
 </template>>
 <script>
     import axios from "axios"
-    import request from "../../utils/request"
+    import {post} from "../../utils/request"
+    import {get} from "../../utils/request"
     var self=this
  export default {    
     data() {
