@@ -138,7 +138,7 @@ option: [{
 	                "Time":"2020.05.21",
                   "Address":self.itemInfo.Address,
                   "Type":"1",
-                	"SupplyItems":self.itemInfo.domains
+                	"Items":self.itemInfo.domains
                }) .then(response => {
               self.$message({
                 message: "恭喜您提交成功",
