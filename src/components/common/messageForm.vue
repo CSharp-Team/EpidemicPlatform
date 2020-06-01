@@ -58,7 +58,7 @@
 </template>>
 <script>
     import axios from "axios"
-
+var self=this
  export default {    
     data() {
       return {
@@ -82,7 +82,6 @@
       getdata(){
           var user = ' ';
           user = this.$store.state.user;
-          var self = this;
 
           var senturl = '/g/Message/getSentMessage?name='+user;
           axios.get(senturl)
@@ -94,22 +93,44 @@
           var reciHandledurl = '/g/Message/getReceiveMessageHandled?name='+user;
           axios.get(reciHandledurl)
           .then(response=>{
+            console.log("response")
               console.log(response)
               self.receiveMessageHandled=response.data
           })
 
-          var unreciHandledurl = '/g/Message/getReceiveMessageUnHandled?name='+user;
+         
+
+      },
+      getUnHandledMessage(){
+        var user = ' ';
+          user = this.$store.state.user;
+         var unreciHandledurl = '/g/Message/getReceiveMessageUnHandled?name='+user;
           axios.get(unreciHandledurl)
           .then(response=>{
+            
+              // self.receiveMessageUnHandled=response.data
+              // self.receiveMessageUnHandled=JSON.parse(JSON.stringify(response.data));
+              
+              
+              
+              console.log("receiveMessageUnHandled response")
               console.log(response)
-              self.receiveMessageUnHandled=response.data
+              for(var i=0;i<response.data.length;i++)
+              {
+                  self.receiveMessageUnHandled.push(response.data[i]);
+              }
           })
-
+          console.log("\n\n\n")
+          console.log("self.receiveMessageUnHandled")
+          console.log(self.receiveMessageUnHandled)
+          console.log("\n\n\n")
       }
     },
     mounted(){
-        this.getdata();
         self = this ;
+        this.getdata();
+        this.getUnHandledMessage()
+        
     }
   };
 </script>>

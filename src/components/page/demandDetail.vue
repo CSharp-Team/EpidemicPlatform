@@ -175,6 +175,7 @@ export default {
         self.requestItems=JSON.parse(JSON.stringify(data.items)); //深拷贝
         self.matchedData2=JSON.parse(JSON.stringify(data)); //深拷贝
       }
+      console.log("self.requestItems")
       console.log(self.requestItems)
     }
   },
