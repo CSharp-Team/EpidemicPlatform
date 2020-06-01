@@ -49,6 +49,7 @@
 import topnav from '@/components/common/nav'
 import leftnav from '@/components/common/leftNav'
 import axios from "axios";
+
 var self=this
 export default {
   
@@ -71,7 +72,11 @@ export default {
  methods:{
     getData(){
       var url='/g/User/getUserByName';
+      // var regix=/^(%22)(%22)$/
       url=url+"?name="+this.$store.state.user
+      console.log(this.$store.state.user.replace(/\"/g, ""))
+      // url=url+"?name="+localStorage.getItem('user')
+      // url=url+"?name="+decodeURIComponent(localStorage.getItem('user'))
        axios
         .get(url)
         .then(response => {
