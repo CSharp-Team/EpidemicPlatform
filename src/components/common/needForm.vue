@@ -128,7 +128,7 @@ option: [{
         onSubmit() {
                console.log('submit!');
                 var self = this;
-                var path = "/g/addNeed";
+                var path = "/g/Need/addNeed";
                  
                axios.post(path,{
                   "User":this.$store.state.user,

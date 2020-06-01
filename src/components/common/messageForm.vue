@@ -84,21 +84,21 @@
           user = this.$store.state.user;
           var self = this;
 
-          var senturl = '/g/getSentMessage?name='+user;
+          var senturl = '/g/Message/getSentMessage?name='+user;
           axios.get(senturl)
           .then(response=>{
               console.log(response)
               self.sentMessage=response.data
           })
           
-          var reciHandledurl = '/g/getReceiveMessageHandled?name='+user;
+          var reciHandledurl = '/g/Message/getReceiveMessageHandled?name='+user;
           axios.get(reciHandledurl)
           .then(response=>{
               console.log(response)
               self.receiveMessageHandled=response.data
           })
 
-          var unreciHandledurl = '/g/getReceiveMessageUnHandled?name='+user;
+          var unreciHandledurl = '/g/Message/getReceiveMessageUnHandled?name='+user;
           axios.get(unreciHandledurl)
           .then(response=>{
               console.log(response)
