@@ -84,7 +84,7 @@ export default {
     detailClick(data) {
       console.log(data.type)
       
-      if(data.type==1)
+      if(data.type==2)
       {
         var id2=data.needId
         this.$router.push({ 
