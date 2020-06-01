@@ -14,7 +14,7 @@
     </div>
 
     <div class="displayInfo">
-      <el-card class="box-card box1" header="供求动态">
+      <el-card class="box-card box1" header="供给动态">
         <!-- <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div> -->
         <div class="dataTable">
           <!-- <el-table :data="supplyTable" height="250" border style="width: 100%">
