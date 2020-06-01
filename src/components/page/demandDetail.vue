@@ -36,7 +36,7 @@
                   <el-popover placement="right" width="400px" trigger="click">
                     <el-form ref="form" :model="form" label-width="80px">
                       <el-form-item
-                        v-for="item1 in props.row.items"
+                        v-for="item1 in requestItems"
                         :key="item1.supplyId"
                         :label="item1.name"
                       >
@@ -53,7 +53,7 @@
                         </el-row>
                       </el-form-item>
                     </el-form>
-                    <el-button slot="reference" type="text">申请</el-button>
+                    <el-button slot="reference" type="text" @click="copyItems(props.row)">申请</el-button>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -85,7 +85,8 @@ export default {
       visible: false,
       form: {
         id: ""
-      }
+      },
+      requestItems:[],
     };
   },
   methods: {
@@ -140,11 +141,41 @@ export default {
     onSubmit(item) {
       this.visible = false;
       console.log(item)
+
       console.log("submit!");
+
+       var url = "/g/Message/sendFirstRequest";
+        axios
+            .post(url, 
+            { 
+            "Applicant": this.$store.state.user,
+            "Recipient":self.matchedData2.user,
+            "SupplyId": self.matchedData2.SupplyId,
+            "NeedId":self.id,
+            "Time":"",
+            "Items":self.requestItems
+            })
+            .then(response => {
+              self.$message({
+                message: "申请已发送",
+                type: "success"
+              });
+            })
+            .catch(e => self.$message.error(e.response.data));
     },
     onRequest() {
       self.visible = true;
       console.log("request");
+    },
+    copyItems(data){
+      self.requestItems=[]
+      for(var i=0;i<data.items.length;i++){
+        // self.requestItems.push(data.items[i]);
+        // self.requestItems.push(JSON.parse(JSON.stringify(data.items[i])));
+        self.requestItems=JSON.parse(JSON.stringify(data.items)); //深拷贝
+        self.matchedData2=JSON.parse(JSON.stringify(data)); //深拷贝
+      }
+      console.log(self.requestItems)
     }
   },
   mounted() {
