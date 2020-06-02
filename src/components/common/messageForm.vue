@@ -52,7 +52,7 @@
     </el-tab-pane>
     <el-tab-pane label="需求订单消息" name="需求订单信息">
        <el-tabs :tab-position="tabPosition" style="height: 800px;" v-model="activeName3" @tab-click="handleClick" stretch=true>
-         <el-tab-pane label="我发出的申请" name="我发出的申请">
+         <el-tab-pane label="已发送的消息" name="我发出的申请">
              <el-table :data="sentMessage" style="width: 100%">  
                   <el-table-column label="消息编号" prop="messageId"></el-table-column>
                   <el-table-column label="接收人" prop="recipient"></el-table-column>  
