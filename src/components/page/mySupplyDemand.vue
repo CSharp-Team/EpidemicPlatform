@@ -27,11 +27,11 @@
                   <el-table-column label="联系人" prop="user"></el-table-column>
                   <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
                   <el-table-column label="地区" prop="address"></el-table-column>
-                  <!-- <el-table-column label="详情" prop>
+                  <el-table-column label="详情" prop>
                     <template slot-scope="props">
                       <el-button @click="detailClick(props.row)">查看详情</el-button>
                     </template>
-                  </el-table-column> -->
+                  </el-table-column>
                 </el-table>
               </el-tab-pane>
               <el-tab-pane label="我的需求" name="demand">
@@ -95,18 +95,18 @@ export default {
         });
         console.log("id:"+data.needId)
       }
-      // else{
-      //   var id2=data.supplyId
-      //   this.$router.push({ 
-      //   path: "../supplyDetail",
-      //   query:{
-      //     // id:data.suppplyId
-      //     id:id2
-      //   }
-      //   });
-      //   console.log("data.suppplyId")
-      //   console.log(data.supplyId)
-      // }
+      else{
+        var id2=data.supplyId
+        this.$router.push({ 
+        path: "../supplyDetail",
+        query:{
+          // id:data.suppplyId
+          id:id2
+        }
+        });
+        console.log("data.suppplyId")
+        console.log(data.supplyId)
+      }
      
       
     },

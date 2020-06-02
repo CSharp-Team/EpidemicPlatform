@@ -111,7 +111,7 @@ export default {
 </script>
 
 
-<style>
+<style  scoped>
 .page {
   width: 100%;
   height: 100%;
