@@ -37,7 +37,7 @@
             <el-table-column label="地区" prop="address"></el-table-column>
             <el-table-column label="详情" prop>
               <template slot-scope="props">
-                <el-button @click="detailClick(props.row)">查看详情</el-button>
+                <el-button @click="detailClick2(props.row)">查看详情</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -66,7 +66,7 @@
             <el-table-column label="地区" prop="address"></el-table-column>
               <el-table-column label="详情" prop>
               <template slot-scope="props">
-                <el-button @click="detailClick(props.row)">查看详情</el-button>
+                <el-button @click="detailClick1(props.row)">查看详情</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -94,11 +94,20 @@ export default {
     };
   },
   methods: {
-     detailClick(data) {
+     detailClick1(data) {
       this.$router.push({ 
-        path: "../detail",
+        path: "../demandDetail",
         query:{
-          id:data.id
+          id:data.needId
+        }
+        });
+      
+    },
+     detailClick2(data) {
+      this.$router.push({ 
+        path: "../supplyDetail",
+        query:{
+          id:data.supplyId
         }
         });
       
