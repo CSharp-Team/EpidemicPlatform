@@ -206,8 +206,8 @@ export default {
         
         self.requestItems2.push({
           "ItemId":self.requestItems[j].supplyItemId,
-          "name":self.requestItems[j].name,
-          "count":self.requestItems[j].count
+          "ItemName":self.requestItems[j].name,
+          "ItemCount":self.requestItems[j].count
         })
       }
     },
