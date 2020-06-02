@@ -107,7 +107,8 @@ export default {
         id: ""
       },
       requestItems:[],
-      dynamicData:[]
+      dynamicData:[],
+      requestItems2:[]
     };
   },
   methods: {
@@ -174,7 +175,7 @@ export default {
             "SupplyId": self.matchedData2.supplyId,
             "NeedId":self.id,
             "Time":"",
-            "Items":self.requestItems
+            "Items":self.requestItems2
             })
             .then(response => {
               self.$message({
@@ -200,6 +201,15 @@ export default {
       console.log(self.requestItems)
       console.log("self.matchedData2")
       console.log(self.matchedData2)
+      for(var j=0;j<self.requestItems.length;j++)
+      {
+        
+        self.requestItems2.push({
+          "ItemId":self.requestItems[j].supplyItemId,
+          "name":self.requestItems[j].name,
+          "count":self.requestItems[j].count
+        })
+      }
     },
     getDynamic(){
       var url2 = "/g/Message/getExchangeByNeedId";
