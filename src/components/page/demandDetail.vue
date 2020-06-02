@@ -3,9 +3,10 @@
     <topnav></topnav>
 
     <el-row>
-      <el-col :span="20" offset="2">
-        <div class="content">
-          <el-card class="box-card">
+      <div class="content">
+      <el-col :span="10" offset="1">
+        
+          <el-card class="box-card demandCard">
             <div slot="header" class="clearfix">
               <span>需求详情</span>
             </div>
@@ -14,12 +15,14 @@
               <el-table-column label="数量" prop="count"></el-table-column>
             </el-table>
           </el-card>
-
+          </el-col>
+          
+          <el-col :span="10" offset="1">
           <el-card class="box-card matchedCard">
             <div slot="header" class="clearfix">
               <span>匹配情况</span>
             </div>
-            <el-table :data="matchedData" style="width: 100%">
+            <el-table :data="matchedData" style="width: 100%" height="400px">
               <el-table-column type="expand">
                 <template slot-scope="props">
                   <el-table :data="props.row.items">
@@ -59,7 +62,16 @@
               </el-table-column>
             </el-table>
           </el-card>
-        </div>
+
+
+        
+      </el-col>
+      </div>
+    </el-row>
+
+    <el-row>
+      <el-col :span="20" offset="2">
+
       </el-col>
     </el-row>
   </div>
@@ -126,14 +138,14 @@ export default {
           // console.log(response);
           self.matchedData = response.data;
            for(var i=0;i<response.data.length;i++){
-              self.matchedData2.push(response.data[i]);
+              // self.matchedData2.push(response.data[i]);
               self.matchedItems.push(response.data[i].items);
             }
         })
         .catch(e => self.$message.error(e.response.data));
         console.log("\n\n\n");
-        console.log("matchedData2")
-        console.log(self.matchedData2)
+        // console.log("matchedData2")
+        // console.log(self.matchedData2)
         console.log("matchedItems")
         console.log(self.matchedItems)
         console.log("\n\n\n");
@@ -150,7 +162,7 @@ export default {
             { 
             "Applicant": this.$store.state.user,
             "Recipient":self.matchedData2.user,
-            "SupplyId": self.matchedData2.SupplyId,
+            "SupplyId": self.matchedData2.supplyId,
             "NeedId":self.id,
             "Time":"",
             "Items":self.requestItems
@@ -177,6 +189,8 @@ export default {
       }
       console.log("self.requestItems")
       console.log(self.requestItems)
+      console.log("self.matchedData2")
+      console.log(self.matchedData2)
     }
   },
   mounted() {
@@ -189,7 +203,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .page {
   width: 100%;
   height: 100%;
@@ -198,7 +212,7 @@ export default {
 .content {
   float: left;
   width: 100%;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 .nav {
   margin-top: 3%;
@@ -232,6 +246,10 @@ export default {
   width: 50%;
 }
 .matchedCard {
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  /* height: 400px; */
+}
+.demandCard{
+  /* height: 400px; */
 }
 </style>
