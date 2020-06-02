@@ -127,8 +127,8 @@ var self=this
           console.log(obj.meaasgeState)
           var url = '/g/Message/sendThirdRequest'
           axios.post(url,{
-            "Applicant":obj.applicant,
-          	"Recipient":obj.recipient,
+            "Applicant":obj.recipient,
+          	"Recipient":obj.applicant,
           	"SupplyId":obj.supplyId,
 	          "NeedId":obj.needId,
 	          "Time":"2020.05.23",
@@ -143,8 +143,8 @@ var self=this
           console.log(obj.meaasgeState)
           var url = '/g/Message/sendSecondRequest'
           axios.post(url,{
-            "Applicant":obj.applicant,
-          	"Recipient":obj.recipient,
+            "Applicant":obj.recipient,
+          	"Recipient":obj.applicant,
           	"SupplyId":obj.supplyId,
 	          "NeedId":obj.needId,
 	          "Time":"2020.05.23",
@@ -170,7 +170,14 @@ var self=this
           .then(response=>{
             console.log("response")
               console.log(response)
-              self.receiveMessageHandled=response.data
+                 if(response.data[i].messageType=="First")
+                  {self.FirstMessage.push(response.data[i]);}
+                  else if(response.data[i].messageType=="Second"){
+                    self.SecondMessage.push(response.data[i])
+                  }
+                  else if(response.data[i].messageType=="Third"){
+                    self.ThirdMessage.push(response.data[i])
+                  }
           })
 
          
