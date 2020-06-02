@@ -35,15 +35,15 @@
                       <el-table-column type="expand">
                     <template slot-scope="props">
                       <el-table :data="props.row.items" :show-header="false">
-                        <el-table-column prop="itemName"></el-table-column>
-                        <el-table-column prop="itemCount"></el-table-column>
+                        <el-table-column label="" prop="itemName"></el-table-column>
+                        <el-table-column label="" prop="itemCount"></el-table-column>
                       </el-table>
                     </template>
                   </el-table-column>
                   <el-table-column label="是否接收">
                       <template slot-scope="props">
                          <el-button v-if="props.row.meaasgeState=='Y'" type="primary" size="medium"  :disabled=true>供需完成</el-button>
-                         <el-button v-else-if="props.row.meaasgeState=='N'"  type="primary" size="medium"  @click="ConfirmClick(scope.row)">确认对方已收到</el-button>
+                         <el-button v-else-if="props.row.meaasgeState=='N'"  type="primary" size="medium"  @click="ConfirmClick(props.row)">确认对方已收到</el-button>
                       </template>
                   </el-table-column>
                </el-table>
@@ -121,6 +121,9 @@ var self=this
         obj.meaasgeState="Y"
         console.log(obj)
         var url = '/g/Message/confirm?MessageId='+obj.messageId
+        axios.get(url).then(response=>{
+          console.log(response)
+        })
       },
       SecondClick(obj){
           obj.meaasgeState="Y"
