@@ -10,7 +10,7 @@
             <div slot="header" class="clearfix">
               <span>需求详情</span>
             </div>
-            <el-table :data="localData.items" style="width: 100%">
+            <el-table :data="localData.items" style="width: 100%" height="250px">
               <el-table-column label="物品名称" prop="name"></el-table-column>
               <el-table-column label="数量" prop="count"></el-table-column>
             </el-table>
@@ -22,7 +22,7 @@
             <div slot="header" class="clearfix">
               <span>匹配情况</span>
             </div>
-            <el-table :data="matchedData" style="width: 100%" height="400px">
+            <el-table :data="matchedData" style="width: 100%" height="250px">
               <el-table-column type="expand">
                 <template slot-scope="props">
                   <el-table :data="props.row.items">
@@ -71,6 +71,14 @@
 
     <el-row>
       <el-col :span="20" offset="2">
+        <el-card class="box-card dealCard">
+  <div slot="header" class="clearfix">
+    <span>对接动态</span>
+  </div>
+  <div v-for="d in dynamicData" :key="d" class="text item">
+    {{ d.supplicant+'向'+d.requestor+'提供了'+d.itemName+' '+d.itemCount }}
+  </div>
+</el-card>
 
       </el-col>
     </el-row>
@@ -99,6 +107,7 @@ export default {
         id: ""
       },
       requestItems:[],
+      dynamicData:[]
     };
   },
   methods: {
@@ -191,6 +200,24 @@ export default {
       console.log(self.requestItems)
       console.log("self.matchedData2")
       console.log(self.matchedData2)
+    },
+    getDynamic(){
+      var url2 = "/g/Message/getExchangeByNeedId";
+      console.log("this.id=" + this.id);
+      url2 = url2 + "?id=" + this.id;
+      axios
+        .get(url2)
+        .then(response => {
+          console.log(response);
+          for(var i=0;i<response.data.length;i++){
+             
+              self.dynamicData.push(response.data[i]);
+            }
+          console.log("dynamicData")
+          console.log(self.dynamicData)
+        })
+        .catch(e => self.$message.error(e.response.data));
+
     }
   },
   mounted() {
@@ -198,6 +225,7 @@ export default {
     self.getParams();
     this.getData();
     this.getMatchedData();
+    this.getDynamic()
   }
 };
 </script>
@@ -206,7 +234,7 @@ export default {
 <style scoped>
 .page {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: #f8f8f8;
 }
 .content {
@@ -251,5 +279,8 @@ export default {
 }
 .demandCard{
   /* height: 400px; */
+}
+.dealCard{
+  margin-top: 20px;
 }
 </style>
