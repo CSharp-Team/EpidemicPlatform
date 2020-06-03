@@ -71,19 +71,19 @@ from 'element-china-area-data';
              options: provinceAndCityDataPlus,
                 selectedOptions: [],
 option: [{
-                              name: 'N95 Mask',
+                              name: 'N95口罩',
                               label: 'N95口罩'
                             }, {
-                              name: 'surgery mask',
+                              name: '医用外科口罩',
                               label: '医用外科口罩'
                             }, {
-                              name: 'mask',
+                              name: '普通口罩',
                               label: '普通口罩'
                             }, {
-                              name: 'protection glasses',
+                              name: '护目镜',
                               label: '护目镜'
                             }, {
-                              name: 'protection suit',
+                              name: '防护服',
                               label: '防护服'
                             }],
 
@@ -138,10 +138,6 @@ option: [{
                   "Type":"2",
                   "Items":self.itemInfo.domains,
                }) .then(response => {
-              self.$message({
-                message: "恭喜您提交成功",
-                type: "success"
-              });
                self.$notify({
                          title: '恭喜您提交成功',
                          message: '',
