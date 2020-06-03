@@ -22,7 +22,6 @@ const store=new Vuex.Store({
         },
         dispUser(state){
             console.log(state.user)
-            
         }
     }
 })
