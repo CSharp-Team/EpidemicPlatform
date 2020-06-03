@@ -14,7 +14,7 @@ export default {
     },
     methods:{
         init(){
-             this.$store.commit('newAuthor',user)
+             this.$store.commit('newAuthor','user')
         }
     },
     mounted(){
