@@ -340,6 +340,16 @@ export default {
         })
         .catch(e => self.$message.error(e.response.data));
       
+    },
+    initData(){
+       var url='/g/Map/upData'
+       axios
+        .get(url)
+        .then(response => {
+          console.log("初始化成功！")
+        })
+        .catch(e => self.$message.error(e.response.data));
+
     }
   },
   
