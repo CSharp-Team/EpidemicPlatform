@@ -13,12 +13,12 @@ export default {
         distriMap,topnav0
     },
     methods:{
-        init(){
-             this.$store.commit('newAuthor','user')
-        }
+        // init(){
+        //      this.$store.commit('newAuthor','user')
+        // }
     },
     mounted(){
-        this.init()
+        // this.init()
     }
 }
 </script>

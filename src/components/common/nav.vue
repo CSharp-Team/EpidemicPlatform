@@ -32,7 +32,7 @@
         <div class="grid-content bg-purple">
           <el-submenu index="3">
             <template slot="title">发布</template>
-            <el-menu-item index="/give">发布供求</el-menu-item>
+            <el-menu-item index="/give">发布供给</el-menu-item>
             <el-menu-item index="/need">发布需求</el-menu-item>
           </el-submenu>
         </div>

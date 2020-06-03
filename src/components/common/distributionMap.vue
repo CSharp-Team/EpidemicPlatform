@@ -32,6 +32,7 @@ export default {
   },
   mounted(){
     self=this
+    // this.initData()
     this.getEchartData()
   },
   methods: {
@@ -315,6 +316,7 @@ export default {
       this.chinachart.setOption(chartOption);
     },
     getEchartData(){
+      // var url=process.env.API_ROOT+'/Map/getDays';
       var url='/g/Map/getDays';
        axios
         .get(url)
@@ -331,7 +333,8 @@ export default {
         
         })
         .catch(e => self.$message.error(e.response.data));
-      var url='/g/Map/getPeopleNum';
+        // var url=process.env.API_ROOT+'/Map/getPeopleNum';
+        var url='/g/Map/getPeopleNum';
        axios
         .get(url)
         .then(response => {
@@ -341,16 +344,17 @@ export default {
         .catch(e => self.$message.error(e.response.data));
       
     },
-    initData(){
-       var url='/g/Map/upData'
-       axios
-        .get(url)
-        .then(response => {
-          console.log("初始化成功！")
-        })
-        .catch(e => self.$message.error(e.response.data));
+    // initData(){
+    //   //  var url=process.env.API_ROOT+'/Map/upData'
+    //   var url='/g/Map/upData';
+    //    axios
+    //     .get(url)
+    //     .then(response => {
+    //       console.log("初始化成功！")
+    //     })
+    //     .catch(e => self.$message.error(e.response.data));
 
-    }
+    // }
   },
   
 };

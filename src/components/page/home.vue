@@ -3,7 +3,7 @@
     <topnav></topnav>
     <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
 
-    <div style="margin-top: 15px;" class="search">
+    <!-- <div style="margin-top: 15px;" class="search">
       <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
         <el-select v-model="select" slot="prepend" placeholder="请选择">
           <el-option label="供求" value="1"></el-option>
@@ -11,7 +11,7 @@
         </el-select>
         <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
       </el-input>
-    </div>
+    </div>-->
 
     <div class="displayInfo">
       <el-card class="box-card box1" header="供给动态">
@@ -64,7 +64,7 @@
             <el-table-column label="联系人" prop="user"></el-table-column>
             <el-table-column label="联系方式" prop="phoneNumber"></el-table-column>
             <el-table-column label="地区" prop="address"></el-table-column>
-              <el-table-column label="详情" prop>
+            <el-table-column label="详情" prop>
               <template slot-scope="props">
                 <el-button @click="detailClick1(props.row)">查看详情</el-button>
               </template>
@@ -94,23 +94,21 @@ export default {
     };
   },
   methods: {
-     detailClick1(data) {
-      this.$router.push({ 
+    detailClick1(data) {
+      this.$router.push({
         path: "../demandDetail",
-        query:{
-          id:data.needId
+        query: {
+          id: data.needId
         }
-        });
-      
+      });
     },
-     detailClick2(data) {
-      this.$router.push({ 
+    detailClick2(data) {
+      this.$router.push({
         path: "../supplyDetail",
-        query:{
-          id:data.supplyId
+        query: {
+          id: data.supplyId
         }
-        });
-      
+      });
     },
     search() {
       var result = "";

@@ -7,6 +7,7 @@ const store=new Vuex.Store({
     //定义状态
     state:{
         user:localStorage.getItem('user').replace(/\"/g, ""),
+        // user:'aaa',
         isLogin:"",
 
     },

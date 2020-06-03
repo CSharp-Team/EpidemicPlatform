@@ -36,7 +36,7 @@
               <el-table-column label="地区" prop="address"></el-table-column>
               <el-table-column label="详情" prop>
                 <template slot-scope="props">
-                  <el-popover placement="right" width="400px" trigger="click">
+                  <el-popover placement="right" width="450px" trigger="click">
                     <el-form ref="form" :model="form" label-width="80px">
                       <el-form-item
                         v-for="item1 in requestItems"
@@ -163,6 +163,15 @@ export default {
     onSubmit(item) {
       this.visible = false;
       console.log(item)
+      for(var j=0;j<self.requestItems.length;j++)
+      {
+        
+        self.requestItems2.push({
+          "ItemId":self.requestItems[j].supplyItemId,
+          "ItemName":self.requestItems[j].name,
+          "ItemCount":parseInt(self.requestItems[j].count)
+        })
+      }
 
       console.log("submit!");
 
@@ -173,7 +182,7 @@ export default {
             "Applicant": this.$store.state.user,
             "Recipient":self.matchedData2.user,
             "SupplyId": self.matchedData2.supplyId,
-            "NeedId":self.id,
+            "NeedId":parseInt(self.id),
             "Time":"",
             "Items":self.requestItems2
             })
@@ -184,6 +193,7 @@ export default {
               });
             })
             .catch(e => self.$message.error(e.response.data));
+            self.requestItems2=[]
     },
     onRequest() {
       self.visible = true;
@@ -201,15 +211,7 @@ export default {
       console.log(self.requestItems)
       console.log("self.matchedData2")
       console.log(self.matchedData2)
-      for(var j=0;j<self.requestItems.length;j++)
-      {
-        
-        self.requestItems2.push({
-          "ItemId":self.requestItems[j].supplyItemId,
-          "ItemName":self.requestItems[j].name,
-          "ItemCount":self.requestItems[j].count
-        })
-      }
+      
     },
     getDynamic(){
       var url2 = "/g/Message/getExchangeByNeedId";

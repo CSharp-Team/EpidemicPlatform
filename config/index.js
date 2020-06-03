@@ -4,6 +4,8 @@
 
 const path = require('path')
 
+
+
 module.exports = {
   dev: {
 
@@ -12,8 +14,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/g': {
-        // target: "https://localhost:5001/api",
-        target:"http://122.51.162.119/api",
+        target: "https://localhost:5001/api",
+        // target:"http://122.51.162.119/api",
         changeOrigin: true,
         pathRewrite: {
           '^/g': ''
