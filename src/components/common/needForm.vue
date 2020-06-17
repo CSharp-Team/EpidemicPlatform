@@ -1,11 +1,12 @@
 <template>
+<el-card class="box-card">
+   <div slot="header" class="clearfix">
+    <span>卡片名称</span>
+     </div>
 <el-form :label-position="labelPosition" label-width="80px" :model="itemInfo" ref="itemInfo">
   <el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
-    <el-col :span="6">
-      <el-form-item>
-      </el-form-item>
-    </el-col>
-    <el-col :span="6">
+
+    <el-col :span="4">
        <el-form-item label="物品类型"  :key="domain.key"
                                 :prop="'domains.' + index + '.name'">
            <el-select v-model="domain.name">
@@ -18,23 +19,20 @@
           </el-select>
        </el-form-item>
     </el-col>
-    <el-col :span="6">
-        <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
+    <el-col :span="4">
+        <el-form-item label="物品数量"  :key="domain.key"
                                        :prop="'domains.' + index + '.count'">
             <el-input-number v-model="domain.count" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
         </el-form-item>
     </el-col>
-    <el-col :span="4"><div>
+    <el-col :span="3">
        <el-form-item label=" ">
        </el-form-item>
        <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
-       </div></el-col>
+       </el-col>
  </el-row>
  <el-row>
-    <el-col :span="6">
-      <el-form-item>
-      </el-form-item>
-    </el-col>
+
     <el-col :span="5">
       <el-form-item label="联系方式">
           <el-input v-model="itemInfo.tel"></el-input>
@@ -53,6 +51,7 @@
         <el-button round @click="resetForm('itemInfo')">重置</el-button>
       </el-form-item>
   </el-form>
+  </el-card>
 </template>
 
 <script>
@@ -90,7 +89,7 @@ option: [{
                               label: '防护服'
                             }],
 
-           labelPosition: 'top',
+           labelPosition: 'left',
            itemInfo: {
               domains:[{
                 id:1,
@@ -166,6 +165,10 @@ option: [{
   .submit-btn{
     text-align: center;
     margin-left: -60px;
+  }
+    .box-card {
+    width: 680px;
+    margin-left: 35%;
   }
 </style>
 
