@@ -1,12 +1,8 @@
 <template>
   <div>
     <topnav></topnav>
-
-
   <el-main>
-
       <messageForm></messageForm>
-
   </el-main>
   </div>
 </template>

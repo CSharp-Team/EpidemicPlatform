@@ -1,10 +1,7 @@
 <template>
     <div>
-
       <vNav></vNav>
       <vForm></vForm>
-
-
     </div>
 
 </template>

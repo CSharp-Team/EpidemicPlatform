@@ -1,6 +1,6 @@
 <template>
 
-  <el-tabs :tab-position="tabPosition2" style="height: 900px;" v-model="activeName" @tab-click="handleClick" stretch=true>
+  <el-tabs :tab-position="tabPosition2" style="height: 900px;" v-model="activeName" @tab-click="handleClick" >
     <el-tab-pane label="供给订单消息" name="供给订单消息">
       <el-tabs :tab-position="tabPosition" style="height: 800px;" v-model="activeName2" @tab-click="handleClick" >
          <el-tab-pane label="我收到的申请" name="我收到的申请">
@@ -218,7 +218,6 @@ var self=this
           console.log("\n\n\n")
                 
          console.log(self.receiveMessageUnHandled)
-         console.log(11111111111111111111111111)
          console.log(self.FirstMessage)
          console.log(self.SecondMessage)
          console.log(self.ThirdMessage)

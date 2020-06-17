@@ -30,18 +30,23 @@
        <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
        </div></el-col>
  </el-row>
- <el-row>
-    <el-col :span="9">
+<el-row>
+    <el-col :span="6">
       <el-form-item>
       </el-form-item>
     </el-col>
-    <el-col :span="6">
+    <el-col :span="5">
       <el-form-item label="联系方式">
           <el-input v-model="itemInfo.tel"></el-input>
-      </el-form-item>  </el-col> </el-row>
+      </el-form-item>  </el-col> 
+      <el-col :span="2">
+      <el-form-item>
+      </el-form-item>
+    </el-col>
+      <el-col :span="5">
       <el-form-item label="省市 :" prop="description">
-                            <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>
-                         </el-form-item>
+                             <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>                   
+                         </el-form-item></el-col></el-row>
       <el-form-item>
         <el-button round type="primary" @click="onSubmit">提交</el-button>
         <el-button round @click="addDomain">新增物品类型</el-button>
