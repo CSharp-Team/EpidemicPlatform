@@ -308,15 +308,15 @@ export default {
 		// 	alert(1);
 		// 	console.log(params);//此处写点击事件内容
     // });//点击事件，此事件还可以用到柱状图等其他地图
-    this.chinachart.on('click', function (params) {//点击事件
-        if (params.componentType === 'series') {
-             var provinceName =params.name;
-            //  $('#box').css('display','block');
-            //  $("#box-title").html(provinceName);
-            alert(provinceName)
+//     this.chinachart.on('click', function (params) {//点击事件
+//         if (params.componentType === 'series') {
+//              var provinceName =params.name;
+//             //  $('#box').css('display','block');
+//             //  $("#box-title").html(provinceName);
+//             alert(provinceName)
 
-            }
-});
+//             }
+// });
     },
     getEchartData(){
       // var url=process.env.API_ROOT+'/Map/getDays';

@@ -1,70 +1,139 @@
 <template>
-<!-- <div> -->
+  <!-- <div> -->
   <!-- <topnav0></topnav0> -->
   <div id="china_map" style="width:100%;height:600px;">
-  <!-- </div> -->
-</div>
-  
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
 import echarts from "echarts";
 import "echarts/map/js/china.js";
 import axios from "axios";
-var self=this
+var self = this;
 export default {
-  name:'distriMap',
+  name: "distriMap",
   data() {
     return {
       chinachart: null,
-      days: [],
-      province:[],
-      e_data: [],
-      news:[],
-      sdData:[]
-    };
-  },
-  created(){
-      this.province = [
-        '湖北', '广东', '浙江', '湖南', '河南', '安徽', '重庆', '山东', '江西', '四川', '江苏', '北京', '福建', '上海',
-        '广西', '河北', '陕西', '云南', '海南', '黑龙江', '辽宁', '山西', '天津', '甘肃', '内蒙古', '新疆', '宁夏', '吉林',
-        '贵州', '青海', '西藏', '澳门', '香港', '台湾'
-      ];
-      this.sdData=[];
 
-  },
-  mounted(){
-    self=this
-    // this.initData()
-    this.getEchartData()
+      province: [
+        "湖北",
+        "广东",
+        "浙江",
+        "湖南",
+        "河南",
+        "安徽",
+        "重庆",
+        "山东",
+        "江西",
+        "四川",
+        "江苏",
+        "北京",
+        "福建",
+        "上海",
+        "广西",
+        "河北",
+        "陕西",
+        "云南",
+        "海南",
+        "黑龙江",
+        "辽宁",
+        "山西",
+        "天津",
+        "甘肃",
+        "内蒙古",
+        "新疆",
+        "宁夏",
+        "吉林",
+        "贵州",
+        "青海",
+        "西藏",
+        "澳门",
+        "香港",
+        "台湾"
+      ],
+      e_data: [
+        67802,
+        1508,
+        1258,
+        1019,
+        1276,
+        990,
+        579,
+        775,
+        937,
+        554,
+        647,
+        582,
+        345,
+        522,
+        254,
+        325,
+        255,
+        183,
+        168,
+        488,
+        140,
+        137,
+        177,
+        138,
+        117,
+        76,
+        75,
+        98,
+        147,
+        18,
+        1,
+        41,
+        802,
+        339
+      ]
+    };
   },
   methods: {
     mapInit() {
       var that = this;
       // 初始化echarts实例
-      this.chinachart = echarts.init(document.getElementById("china_map"));
+      that.chinachart = echarts.init(document.getElementById("china_map"));
       // 进行相关配置
+      var res = [];
+
+      for (var j = 0; j < this.e_data.length; j++) {
+        res.push({
+          name: this.province[j],
+          value: this.e_data[j]
+        });
+      }
+      res.sort(function(a, b) {
+        return a.value - b.value;
+      });
+      var res1 = [];
+      var res2 = [];
+      for (var t = 0; t < 10; t++) {
+        res1[t] = res[res.length - 1 - t].name;
+        res2[t] = res[res.length - 1 - t].value;
+      }
+      console.log(res1);
+      console.log("----------------");
+      console.log(this.province);
 
       var chartOption = {
         baseOption: {
-          timeline: {
-            axisType: "category",
-            autoPlay: true,
-            playInterval: 2000,
-            symbolSize: 12,
-            left: "5%",
-            right: "5%",
-            bottom: "0%",
-            width: "90%",
-            data: that.days,
-            tooltip: {
-              formatter: that.days
-            }
+          title: {
+            //text: days[n] + "日  " + news[n],
+            text: "Hello",
+            textStyle: {
+              color: "#2D3E53",
+              fontSize: 28
+            },
+            left: 20,
+            top: 20
           },
           tooltip: {
             show: true,
             formatter: function(params) {
-              return params.name + "：" + params.data["value"];
+              return params.name + "：" + params.value;
             }
           },
           // visualMap的详细配置解析：https://echarts.baidu.com/option.html#visualMap
@@ -116,52 +185,52 @@ export default {
             },
             bottom: "10%",
             left: "10%"
-          }, 
+          },
           grid: {
-          right: "5%",
-          top: "20%",
-          bottom: "10%",
-          width: "20%"
-        },
-        xAxis: {
-          min: 0,
-          max: 4000,
-          show: false
-        },
-        yAxis: [
-          {
-            inverse: true,
-            offset: "2",
-            type: "category",
-            data: "",
-            nameTextStyle: {
-              color: "#fff"
-            },
-            axisTick: {
-              show: false
-            },
-            axisLabel: {
-              //rotate:45,
-              textStyle: {
-                fontSize: 14,
-                color: "#000000"
+            right: "5%",
+            top: "20%",
+            bottom: "10%",
+            width: "20%"
+          },
+          xAxis: {
+            min: 0,
+            max: 4000,
+            show: false
+          },
+          yAxis: [
+            {
+              inverse: true,
+              offset: "2",
+              type: "category",
+              // data: "",
+              nameTextStyle: {
+                color: "#fff"
               },
-              interval: 0
-            },
-            axisLine: {
-              show: false,
-              lineStyle: {
-                color: "#333"
-              }
-            },
-            splitLine: {
-              show: false,
-              lineStyle: {
-                color: "#333"
+              axisTick: {
+                show: false
+              },
+              axisLabel: {
+                //rotate:45,
+                textStyle: {
+                  fontSize: 14,
+                  color: "#000000"
+                },
+                interval: 0
+              },
+              axisLine: {
+                show: false,
+                lineStyle: {
+                  color: "#333"
+                }
+              },
+              splitLine: {
+                show: false,
+                lineStyle: {
+                  color: "#333"
+                }
               }
             }
-          }
-        ],
+          ],
 
           // geo配置详解： https://echarts.baidu.com/option.html#geo
           geo: {
@@ -170,7 +239,7 @@ export default {
             left: "20%",
             label: {
               emphasis: {
-                show: false
+                show: true
               }
             },
             itemStyle: {
@@ -179,172 +248,63 @@ export default {
               }
             }
           },
-        series: [
-          {
-            name: "mapSer",
-            type: "map",
-            map: "china",
-            roam: false,
-            geoIndex: 0,
-            label: {
-              show: false
-            }
-          },
-          {
-            name: "",
-            type: "bar",
-            zlevel: 2,
-            barWidth: "40%",
-            label: {
-              normal: {
-                show: true,
-                fontSize: 14,
-                position: "right",
-                formatter: "{c}"
-              }
-            }
-          }
-        ],},
-        animationDurationUpdate: 3000,
-        animationEasingUpdate: "quinticInOut",
-        options: []
-      };
-
-      for (var n = 0; n < this.days.length; n++) {
-        var res = [];
-        for (var j = 0; j < this.e_data[n].length; j++) {
-          res.push({
-            name: this.province[j],
-            value: this.e_data[n][j]
-          });
-        }
-        res.sort(function(a, b) {
-          return a.value - b.value;
-        });
-        var res1 = [];
-        var res2 = [];
-        for (var t = 0; t < 10; t++) {
-          res1[t] = res[res.length - 1 - t].name;
-          res2[t] = res[res.length - 1 - t].value;
-        }
-        // console.log(res1);
-        // console.log("----------------");
-        // console.log(this.province);
-        // console.log("this.days",this.days)
-        chartOption.options.push({
-          title: [
-            {
-              text: this.days[n] + "日  " + this.news[n],
-              textStyle: {
-                color: "#2D3E53",
-                fontSize: 24
-              },
-              left: 20,
-              top: 10,
-            },
-            {
-              show: true,
-              text: "感染人数前十的省份",
-              textStyle: {
-                color: "#2D3E53",
-                fontSize: 18
-              },
-              right: "10%",
-              top: "15%"
-            }
-          ],
-          yAxis: {
-            data: res1
-          },
           series: [
             {
+              name: "mapSer",
               type: "map",
-              data: res
+              map: "china",
+              roam: false,
+              geoIndex: 0,
+              data: res,
+              label: {
+                show: false
+              }
             },
             {
+              name: "",
               type: "bar",
-              data: res2,
-              itemStyle: {
+              zlevel: 2,
+              barWidth: "40%",
+              label: {
                 normal: {
-                  color: function(params) {
-                    // build a color map as your need.
-                    var colorList = [
-                      {
-                        colorStops: [
-                          {
-                            offset: 0,
-                            color: "#FF0000" // 0% 处的颜色
-                          },
-                          {
-                            offset: 1,
-                            color: "#990000" // 100% 处的颜色
-                          }
-                        ]
-                      },
-                      {
-                        colorStops: [
-                          {
-                            offset: 0,
-                            color: "#00C0FA" // 0% 处的颜色
-                          },
-                          {
-                            offset: 1,
-                            color: "#2F95FA" // 100% 处的颜色
-                          }
-                        ]
-                      }
-                    ];
-                    if (params.dataIndex < 3) {
-                      return colorList[0];
-                    } else {
-                      return colorList[1];
-                    }
-                  }
+                  show: true,
+                  fontSize: 14,
+                  position: "right",
+                  formatter: "{c}"
                 }
               }
             }
           ]
-        });
-      }
+        },
+        animationDurationUpdate: 3000,
+        animationEasingUpdate: "quinticInOut"
+      };
+
       this.chinachart.setOption(chartOption);
-    },
-    getEchartData(){
-      // var url=process.env.API_ROOT+'/Map/getDays';
-      var url='/g/Map/getDays';
-       axios
-        .get(url)
-        .then(response => {
-        self.days=response.data
-        })
-        .catch(e => self.$message.error(e.response.data));
-      var url='/g/Map/getNews';
-       axios
-        .get(url)
-        .then(response => {
-        self.news=response.data
-        console.log(self.news)
-        
-        })
-        .catch(e => self.$message.error(e.response.data));
-        // var url=process.env.API_ROOT+'/Map/getPeopleNum';
-        var url='/g/Map/getPeopleNum';
-       axios
-        .get(url)
-        .then(response => {
-        self.e_data=response.data
-        self.mapInit()
-        })
-        .catch(e => self.$message.error(e.response.data));
-      
-    },
-   
+      this.chinachart.on("click", function(params) {
+        //点击事件
+        if (params.componentType === "series") {
+          var provinceName = params.name;
+          // alert(provinceName)
+          that.$router.push({
+            path: "../page/supplyDetail",
+            query: {
+              province: provinceName
+            }
+          });
+          console.log(provinceName)
+        }
+      });
+    }
   },
-  
+  mounted() {
+    this.mapInit();
+  }
 };
 </script>
 
 <style>
-  #china_map{
-    margin-top: 20px;
-  }
+#china_map {
+  margin-top: 20px;
+}
 </style>

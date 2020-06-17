@@ -174,7 +174,7 @@ export default {
     handleChange(value) {
       console.log(CodeToText[value[0]]);
       console.log(CodeToText[value[1]]);
-      this.itemInfo.Address = CodeToText[value[1]];
+      this.itemInfo.Address = CodeToText[value[0]];
     },
     onSubmit() {
       console.log("submit!");
