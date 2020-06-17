@@ -8,32 +8,16 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <el-row type="flex" class="row-bg" justify="end">
-      <el-col :span="3">
+    <el-row type="flex" class="row-bg">
+      <el-col :span="3" >
         <div class="grid-content bg-purple">
           <el-row>
-            <!-- <el-col :span="8">image</el-col> -->
-            <el-col :span="16"><el-menu-item index="/home">疫情供需平台</el-menu-item></el-col>
+            <el-col :span="24"><el-menu-item index="/home">疫情供需平台</el-menu-item></el-col>
           </el-row>
-        
-          
         </div>
       </el-col>
-      <el-col :span="6">
-        <!-- <div class="grid-content bg-purple-light">
-          <el-menu-item index="1"></el-menu-item>
-        </div>-->
-      </el-col>
-      <el-col :span="3">
-        <div class="grid-content bg-purple">
-          <!-- <el-submenu index="3">
-            <template slot="title">发布</template>
-            <el-menu-item index="/give">发布供求</el-menu-item>
-            <el-menu-item index="/need">发布需求</el-menu-item>
-          </el-submenu>-->
-        </div>
-      </el-col>
-      <el-col :span="3">
+     
+      <el-col :span="2" offset="18">
         <div class="grid-content bg-purple">
           <el-menu-item index>
             <el-button type="text" @click="dialogFormVisible = true">立即登录</el-button>
@@ -56,18 +40,6 @@
                 <el-button @click="registerClick()">注册</el-button>
                 <el-button type="primary" @click="loginClick()">登录</el-button>
               </el-form>
-
-              <!-- <el-row>
-              <el-col :span="3">
-                  <div class="login_register">注册</div>
-              </el-col>
-              </el-row>-->
-              <!-- <div slot="footer" class="dialog-footer">
-
-                  
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">登录</el-button>
-              </div>-->
             </el-dialog>
           </el-menu-item>
         </div>

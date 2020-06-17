@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.prototype.$axios = Axios;
 Vue.use(Vuex);
+Vue.use(router)
 
 
 
@@ -32,3 +33,13 @@ new Vue({
   },
   template: '<App/>',
 })
+
+// const originalReplace = router.prototype.replace;
+// router.prototype.replace = function replace(location) {
+//   return originalReplace.call(this, location).catch(err => err);
+// };
+
+
+
+
+

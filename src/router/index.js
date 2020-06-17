@@ -95,8 +95,10 @@ const router = new Router({
   ]
 })
 
+
+
 router.beforeEach((to,from,next) => { 
-  if(to.path==="/" || to.path==="/register")
+  if(to.path==="/" || to.path==="/register" || to.path==="/login")
     return next()
 
   //获取token
