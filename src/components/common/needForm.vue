@@ -161,6 +161,7 @@ export default {
       }
     },
     addDomain() {
+      // console.log(provinceAndCityDataPlus)
       this.itemInfo.domains.push({
         id: 1,
         name: "",
