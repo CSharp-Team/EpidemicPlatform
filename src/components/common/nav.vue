@@ -12,8 +12,7 @@
     active-text-color="#ffd04b"
   >
     <el-row type="flex" class="row-bg" justify="end">
-
-       <el-col :span="3">
+      <el-col :span="3">
         <div class="grid-content bg-purple">
           <el-menu-item index="/">疫情地图</el-menu-item>
         </div>
@@ -39,12 +38,19 @@
       </el-col>
       <el-col :span="3">
         <div class="grid-content bg-purple">
-          <el-menu-item index="/myPage">我的</el-menu-item>
+          <el-row>
+            <el-col :span="8">
+              
+            </el-col>
+            <el-col :span="16">
+              <el-menu-item index="/myPage">我的</el-menu-item>
+            </el-col>
+          </el-row>
         </div>
       </el-col>
       <el-col :span="2">
         <!-- <i class="el-icon-message message"></i> -->
-         <div class="grid-content bg-purple">
+        <div class="grid-content bg-purple">
           <el-menu-item index="/message">消息</el-menu-item>
         </div>
       </el-col>
@@ -53,7 +59,6 @@
 </template>
 
 <script>
-
 export default {
   name: "topnav",
   data() {
@@ -66,20 +71,28 @@ export default {
         delivery: false,
         type: [],
         resource: "",
-        desc: ""
+        desc: "",
+        user: "",
+        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
       }
     };
   },
   methods: {
     onSubmit() {
       console.log("submit!");
+    },
+    init() {
+      user = this.$store.state.user;
     }
+  },
+  mounted() {
+    this.init();
   }
 };
 </script>
 
 <style scoped>
-.message{
+.message {
   font-size: 40px;
 }
 </style>

@@ -16,6 +16,7 @@ import supplyAndDemand from '@/components/page/mySupplyDemand'
 import detail from '@/components/page/detail'
 import supplyDetail from '@/components/page/supplyDetail'
 import demandDetail from '@/components/page/demandDetail'
+import map00 from '@/components/page/initialMap'
 
 Vue.use(Router)
 
@@ -87,6 +88,9 @@ const router = new Router({
     {
       path:'/demandDetail',
       component:demandDetail
+    },{
+      path:'/map00',
+      component:map00
     }
   ]
 })

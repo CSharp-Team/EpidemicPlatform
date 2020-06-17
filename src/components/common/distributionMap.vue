@@ -46,8 +46,6 @@ export default {
         baseOption: {
           timeline: {
             axisType: "category",
-            // realtime: false,
-            // loop: false,
             autoPlay: true,
             playInterval: 2000,
             symbolSize: 12,
@@ -55,9 +53,6 @@ export default {
             right: "5%",
             bottom: "0%",
             width: "90%",
-            // controlStyle: {
-            //     position: 'left'
-            // },
             data: that.days,
             tooltip: {
               formatter: that.days
@@ -211,6 +206,7 @@ export default {
         animationEasingUpdate: "quinticInOut",
         options: []
       };
+
       for (var n = 0; n < this.days.length; n++) {
         var res = [];
         for (var j = 0; j < this.e_data[n].length; j++) {
@@ -219,12 +215,6 @@ export default {
             value: this.e_data[n][j]
           });
         }
-        res
-          .sort(function(a, b) {
-            return b.value - a.value;
-          })
-          .slice(0, 6);
-
         res.sort(function(a, b) {
           return a.value - b.value;
         });

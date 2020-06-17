@@ -112,7 +112,7 @@ export default {
     },
     getTableData(){
       // var user='yang';  //user为当前的用户名
-      user=this.$store.state.user
+      var user=this.$store.state.user
       console.log(user)
       var url1='/g/Need/getNeedByName';
       url1=url1+'?name='+user;

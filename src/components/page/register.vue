@@ -55,58 +55,6 @@
         </el-form>
       </div>
 
-      <!-- <div class="initRegister">
-    <el-row>
-        <el-col :span="4" :offset="6" class="regiserRow" align="middle">
-          <i class="icon iconfont icon-yonghuming"></i>
-          <div>用户名</div>
-          <br />
-        </el-col>
-        <el-col :span="8">
-          <el-input v-model="registerForm.username" placeholder="请输入用户名"></el-input>
-        </el-col>
-    </el-row>
-    <el-row>
-        <el-col :span="4" :offset="6">
-          <i class="icon iconfont icon-icon_password"></i>
-          <div>密码</div>
-          <br />
-        </el-col>
-        <el-col :span="8">
-          <el-input v-model="registerForm.password" show-password placeholder="请输入密码"></el-input>
-        </el-col>
-    </el-row>
-      <el-row>
-        <el-col :span="4" :offset="6">
-          <i class="icon iconfont icon-icon_password"></i>
-          <div>确认密码</div>
-          <br />
-        </el-col>
-        <el-col :span="8">
-          <el-input v-model="registerForm.repassword" show-password placeholder="请确认密码"></el-input>
-        </el-col>
-    </el-row>
-      <el-row>
-        <el-col :span="4" :offset="6">
-          <i class="icon iconfont icon-yanzhengma"></i>
-          <div>验证码</div>
-          <br />
-        </el-col>
-        <el-col :span="4">
-          <el-input v-model="registerForm.code" placeholder="请输入验证码"></el-input>
-        </el-col>
-        <el-col :span="4">
-          <el-button plain id="checkCode" @click="createCode()">ABEQ</el-button>
-        </el-col>
-    </el-row>
-      <el-row>
-        <el-col :span="12" :offset="6">
-          <el-button type="primary" round>注册</el-button>
-        </el-col>
-        
-      </el-row>
-</div>
-      -->
     </div>
   </div>
 </template>
@@ -253,6 +201,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  mounted(){
+    this.createCode()
   }
 };
 </script>

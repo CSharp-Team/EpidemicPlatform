@@ -3,25 +3,10 @@
     <topnav></topnav>
     <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
 
-    <!-- <div style="margin-top: 15px;" class="search">
-      <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-        <el-select v-model="select" slot="prepend" placeholder="请选择">
-          <el-option label="供求" value="1"></el-option>
-          <el-option label="需求" value="2"></el-option>
-        </el-select>
-        <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
-      </el-input>
-    </div>-->
 
     <div class="displayInfo">
       <el-card class="box-card box1" header="供给动态">
-        <!-- <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div> -->
         <div class="dataTable">
-          <!-- <el-table :data="supplyTable" height="250" border style="width: 100%">
-            <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
-            <el-table-column prop="num" label="数量" width="100"></el-table-column>
-            <el-table-column prop="person" label="供给人"></el-table-column>
-          </el-table>-->
           <el-table :data="supplyData" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
@@ -46,11 +31,6 @@
 
       <el-card class="box-card box2" header="需求动态">
         <div class="dataTable">
-          <!-- <el-table :data="requireTable" height="250" border style="width: 100%">
-            <el-table-column prop="name" label="物资名称" width="150"></el-table-column>
-            <el-table-column prop="num" label="数量" width="100"></el-table-column>
-            <el-table-column prop="person" label="供给人"></el-table-column>
-          </el-table>-->
           <el-table :data="demandData" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
