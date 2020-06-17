@@ -6,11 +6,11 @@
 
     <div class="displayInfo">
       <el-card class="box-card box1" header="供给动态">
-        <div class="dataTable">
-          <el-table :data="supplyData" style="width: 100%">
+        <div>
+          <el-table class="dataTable" :data="supplyData" height="400px" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-table :data="props.row.items">
+                <el-table :data="props.row.items"  :show-header="false">
                   <el-table-column label="物品名称" prop="name"></el-table-column>
                   <el-table-column label="数量" prop="count"></el-table-column>
                 </el-table>
@@ -30,11 +30,11 @@
       </el-card>
 
       <el-card class="box-card box2" header="需求动态">
-        <div class="dataTable">
-          <el-table :data="demandData" style="width: 100%">
+        <div>
+          <el-table  class="dataTable" :data="demandData" height="400px" style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-table :data="props.row.items">
+                <el-table :data="props.row.items" :show-header="false">
                   <el-table-column label="物品名称" prop="name"></el-table-column>
                   <el-table-column label="数量" prop="count"></el-table-column>
                 </el-table>
@@ -146,6 +146,7 @@ export default {
   margin-left: 5%;
 }
 
+
 .text {
   font-size: 14px;
 }
@@ -180,5 +181,6 @@ export default {
   margin-top: 30px;
   margin-left: 2%;
   float: left;
+ 
 }
 </style>

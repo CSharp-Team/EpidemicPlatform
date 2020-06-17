@@ -9,7 +9,7 @@
             <div slot="header" class="clearfix">
               <span>供给详情</span>
             </div>
-            <el-table :data="localData.items" style="width: 100%" height="250px">
+            <el-table :data="localData.items"  :show-header="false" style="width: 100%" height="250px">
               <el-table-column label="物品名称" prop="name"></el-table-column>
               <el-table-column label="数量" prop="count"></el-table-column>
             </el-table>

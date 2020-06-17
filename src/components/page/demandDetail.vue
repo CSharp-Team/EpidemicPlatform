@@ -25,7 +25,7 @@
             <el-table :data="matchedData" style="width: 100%" height="250px">
               <el-table-column type="expand">
                 <template slot-scope="props">
-                  <el-table :data="props.row.items">
+                  <el-table :data="props.row.items"  :show-header="false">
                     <el-table-column label="物品名称" prop="name"></el-table-column>
                     <el-table-column label="数量" prop="count"></el-table-column>
                   </el-table>
