@@ -163,7 +163,7 @@ export default {
 .page {
   width: 100%;
   /* height: 100%; */
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
 }
 .content {
   float: left;
@@ -209,6 +209,7 @@ export default {
   /* height: 400px; */
 }
 .dealCard{
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  height: 500px;
 }
 </style>

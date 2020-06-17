@@ -20,7 +20,8 @@ export default {
       days: [],
       province:[],
       e_data: [],
-      news:[]
+      news:[],
+      sdData:[]
     };
   },
   created(){
@@ -29,6 +30,8 @@ export default {
         '广西', '河北', '陕西', '云南', '海南', '黑龙江', '辽宁', '山西', '天津', '甘肃', '内蒙古', '新疆', '宁夏', '吉林',
         '贵州', '青海', '西藏', '澳门', '香港', '台湾'
       ];
+      this.sdData=[];
+
   },
   mounted(){
     self=this
@@ -304,19 +307,6 @@ export default {
         });
       }
       this.chinachart.setOption(chartOption);
-    //   this.chinachart.on('click', function(params){
-		// 	alert(1);
-		// 	console.log(params);//此处写点击事件内容
-    // });//点击事件，此事件还可以用到柱状图等其他地图
-    this.chinachart.on('click', function (params) {//点击事件
-        if (params.componentType === 'series') {
-             var provinceName =params.name;
-            //  $('#box').css('display','block');
-            //  $("#box-title").html(provinceName);
-            alert(provinceName)
-
-            }
-});
     },
     getEchartData(){
       // var url=process.env.API_ROOT+'/Map/getDays';
@@ -347,17 +337,7 @@ export default {
         .catch(e => self.$message.error(e.response.data));
       
     },
-    // initData(){
-    //   //  var url=process.env.API_ROOT+'/Map/upData'
-    //   var url='/g/Map/upData';
-    //    axios
-    //     .get(url)
-    //     .then(response => {
-    //       console.log("初始化成功！")
-    //     })
-    //     .catch(e => self.$message.error(e.response.data));
-
-    // }
+   
   },
   
 };

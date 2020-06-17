@@ -17,6 +17,7 @@ import detail from '@/components/page/detail'
 import supplyDetail from '@/components/page/supplyDetail'
 import demandDetail from '@/components/page/demandDetail'
 import map00 from '@/components/page/initialMap'
+import sdPage from '@/components/page/SDPage'
 
 Vue.use(Router)
 
@@ -91,6 +92,9 @@ const router = new Router({
     },{
       path:'/map00',
       component:map00
+    },{
+      path:'/sdPage',
+      component:sdPage
     }
   ]
 })
