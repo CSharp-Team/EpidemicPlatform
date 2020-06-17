@@ -1,60 +1,96 @@
 <template>
-<el-form :label-position="labelPosition" label-width="80px" :model="itemInfo" ref="itemInfo">
-  <el-row :gutter="20" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
-    <el-col :span="6">
-      <el-form-item>
-      </el-form-item>
-    </el-col>
-    <el-col :span="6">
-       <el-form-item label="物品类型"  :key="domain.key"
-                                :prop="'domains.' + index + '.name'">
-           <el-select v-model="domain.name">
-               <el-option
+  <el-card class="box-card box" shadow="always">
+    <div slot="header" class="clearfix">
+      <span>供给表单</span>
+    </div>
+    <el-form :label-position="labelPosition" label-width="100px" :model="itemInfo" ref="itemInfo">
+       <el-row>
+        <el-col :span="8">
+          <el-form-item label="联系方式">
+            <el-input v-model="itemInfo.tel"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8">
+          <el-form-item label="省市 :" prop="description">
+            <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>
+          </el-form-item>
+        </el-col>
+      </el-row>
+       <el-row>
+        <el-col :span="4">
+          <el-form-item label="是否无偿供给">
+           <el-switch v-model="itemInfo.benefit"></el-switch>
+        </el-form-item>
+        </el-col>
+      </el-row>
+       <el-row>
+        <el-col :span="17">
+        <el-form-item label="供给方类型">
+          <el-radio-group v-model="itemInfo.company">
+            <el-radio label="个人"></el-radio>
+            <el-radio label="医疗机构"></el-radio>
+            <el-radio label="政府机构"></el-radio>
+            <el-radio label="社会企业"></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        </el-col>
+      </el-row>
+       <el-row>
+        <el-col :span="14">
+         <el-form-item label="详情描述">
+          <el-input type="textarea" v-model="itemInfo.detail"></el-input>
+         </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row  :gutter="10" v-for="(domain, index) in itemInfo.domains" :key="domain.key">
+        <el-col :span="8">
+          <el-form-item label="物品类型" :key="domain.key" :prop="'domains.' + index + '.name'">
+            <el-select v-model="domain.name">
+              <el-option
                 v-for="item in option"
                 :key="item.name"
                 :label="item.label"
-                :value="item.name">
-               </el-option>
-          </el-select>
-       </el-form-item>
-    </el-col>
-    <el-col :span="6">
-        <el-form-item label="物品数量(可直接输入)"  :key="domain.key"
-                                       :prop="'domains.' + index + '.count'">
-            <el-input-number v-model="domain.count" @change="handleChange1" :min="1" :max="100000000" ></el-input-number>
-        </el-form-item>
-    </el-col>
-    <el-col :span="4"><div>
-       <el-form-item label=" ">
-       </el-form-item>
-       <el-button round type="danger" icon="el-icon-delete" @click.prevent="removeDomain(domain)">delete</el-button>
-       </div></el-col>
- </el-row>
-<el-row>
-    <el-col :span="6">
-      <el-form-item>
-      </el-form-item>
-    </el-col>
-    <el-col :span="5">
-      <el-form-item label="联系方式">
-          <el-input v-model="itemInfo.tel"></el-input>
-      </el-form-item>  </el-col> 
-      <el-col :span="2">
-      <el-form-item>
-      </el-form-item>
-    </el-col>
-      <el-col :span="5">
-      <el-form-item label="省市 :" prop="description">
-                             <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>                   
-                         </el-form-item></el-col></el-row>
+                :value="item.name"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+   
+        <el-col :span="8">
+          <el-form-item label="物品数量" :key="domain.key" :prop="'domains.' + index + '.count'">
+            <el-input-number
+              v-model="domain.count"
+              @change="handleChange1"
+              :min="1"
+              :max="100000000"
+            ></el-input-number>
+          </el-form-item>
+        </el-col>
+             <el-col :span="2">
+          <el-form-item>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <!-- <el-form-item label=" "></el-form-item> -->
+          <el-button
+            round
+            type="danger"
+            icon="el-icon-delete"
+            @click.prevent="removeDomain(domain)"
+          >delete</el-button>
+        </el-col>
+      </el-row>
+     <el-row>
+       <el-col span="20">
       <el-form-item>
         <el-button round type="primary" @click="onSubmit">提交</el-button>
         <el-button round @click="addDomain">新增物品类型</el-button>
         <el-button round @click="resetForm('itemInfo')">重置</el-button>
-      </el-form-item>
-  </el-form>
-
-
+      </el-form-item></el-col></el-row>
+    </el-form>
+  </el-card>
 </template>
 
 <script>
@@ -93,15 +129,18 @@ option: [{
                               name: '防护服',
                               label: '防护服'
                             }],
-           labelPosition: 'top',
+           labelPosition: 'left',
            itemInfo: {
               domains:[{
                 id:1,
                 name:'',
                 count:1
                 }],
+              company:"",
+              benefit:false,
+              detail:"",
               Address:'',
-             tel: ''
+              tel: ''
            }
          };
        },
@@ -173,5 +212,9 @@ option: [{
     text-align: center;
     margin-left: -60px;
   }
+  .box{
+  width: 50%;
+  margin-left: 25%;
+}
 </style>
 
