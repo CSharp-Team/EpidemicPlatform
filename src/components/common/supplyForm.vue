@@ -177,18 +177,22 @@ option: [{
                 var path = "/g/Supply/addSupply";
                  
                axios.post(path,{
-                  "User":this.$store.state.user,
-                	"PhoneNumber":self.itemInfo.tel,
-	                "Time":"2020.05.21",
-                  "Address":self.itemInfo.Address,
-                  "Type":"1",
-                	"Items":self.itemInfo.domains
+                  User:this.$store.state.user,
+                	PhoneNumber:self.itemInfo.tel,
+                  Time:"2020.05.21",
+                  Company:self.itemInfo.company,
+                  Benefit:self.itemInfo.benefit,
+                  Detail:self.itemInfo.detail,
+                  Address:self.itemInfo.Address,
+                  Type:"1",
+                	Items:self.itemInfo.domains
                }) .then(response => {
                self.$notify({
                          title: '恭喜您提交成功',
                          message: '',
                          type: 'success'
              })
+                console.log(response)
                 })
              .catch(e => self.$message.error(e.response.data));
        

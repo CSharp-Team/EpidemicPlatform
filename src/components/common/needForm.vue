@@ -187,6 +187,9 @@ export default {
           User: this.$store.state.user,
           PhoneNumber: self.itemInfo.tel,
           Time: "2020.05.21",
+          Company:self.itemInfo.company,
+          Benefit:self.itemInfo.benefit,
+          Detail:self.itemInfo.detail,
           Address: self.itemInfo.Address,
           Type: "2",
           Items: self.itemInfo.domains
