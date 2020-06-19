@@ -6,7 +6,22 @@
          <el-tab-pane label="我收到的申请" name="我收到的申请">
              <el-table :data="FirstMessage" style="width: 100%">  
                   <el-table-column label="消息编号" prop="messageId"></el-table-column>
-                  <el-table-column label="发送人" prop="applicant"></el-table-column>                
+                  <el-table-column label="发送人" prop="applicant"></el-table-column>
+                  <el-table-column label="申请原因" >
+                    <template slot-scope="props">
+                     <el-popover
+                placement="top-start"
+                title="申请原因"
+                width="200"
+                trigger="hover">
+                <p>{{props.row.reason}}</p>
+                <!-- <el-table :data="props.row">
+                  <el-table-column label="1" prop="reason"></el-table-column>
+                </el-table> -->
+                <el-button slot="reference">申请原因</el-button>
+                     </el-popover>
+                    </template>
+                    </el-table-column>                
                   <el-table-column label="时间" prop="time" ></el-table-column>             
                       <el-table-column type="expand">
                     <template slot-scope="props">
