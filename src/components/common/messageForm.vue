@@ -15,10 +15,7 @@
                 width="200"
                 trigger="hover">
                 <p>{{props.row.reason}}</p>
-                <!-- <el-table :data="props.row">
-                  <el-table-column label="1" prop="reason"></el-table-column>
-                </el-table> -->
-                <el-button slot="reference">申请原因</el-button>
+                <el-button slot="reference"> 申请原因</el-button>
                      </el-popover>
                     </template>
                     </el-table-column>                
