@@ -217,8 +217,9 @@ option: [{
     margin-left: -60px;
   }
   .box{
-  width: 50%;
-  margin-left: 25%;
+  width: 56%;
+  margin-left: 22%;
+  margin-top: 20px;
 }
 </style>
 
