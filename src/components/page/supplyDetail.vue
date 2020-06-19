@@ -24,7 +24,15 @@
     <span>对接动态</span>
   </div>
   <div v-for="d in dynamicData" :key="d" class="text item">
-    {{ d.supplicant+'向'+d.requestor+'提供了'+d.itemName+' '+d.itemCount }}
+     <div v-if="d.type==='请求' && d.itemCount!='0'">
+             {{d.time+ ' '+d.requestor+'向'+d.supplicant+'请求了'+d.itemName+' '+d.itemCount }}
+          </div>
+          <div v-if="d.type==='发货' && d.itemCount!='0'">
+               {{d.time+ ' '+ d.requestor+'向'+d.supplicant+'发货'+d.itemName+' '+d.itemCount }}
+          </div>
+          <div v-if="d.type==='完成' && d.itemCount!='0'">
+               {{d.time+ ' '+ d.supplicant+'与'+d.requestor+'的对接完成，对接物资：'+d.itemName+' '+d.itemCount }}
+          </div>
   </div>
 </el-card>
 
@@ -131,7 +139,7 @@ export default {
       console.log(self.matchedData2)
     },
     getDynamic(){
-      var url2 = "/g/Message/getExchangeByNeedId";
+      var url2 = "/g/Message/getExchangeBySupplyId";
       console.log("this.id=" + this.id);
       url2 = url2 + "?id=" + this.id;
       axios

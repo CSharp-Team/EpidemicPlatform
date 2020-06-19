@@ -98,10 +98,10 @@
              {{d.time+ ' '+d.requestor+'向'+d.supplicant+'请求了'+d.itemName+' '+d.itemCount }}
           </div>
           <div v-if="d.type==='发货' && d.itemCount!='0'">
-               {{ d.supplicant+'向'+d.requestor+'发货'+d.itemName+' '+d.itemCount }}
+               {{d.time+ ' '+ d.supplicant+'向'+d.requestor+'发货'+d.itemName+' '+d.itemCount }}
           </div>
           <div v-if="d.type==='完成' && d.itemCount!='0'">
-               {{ d.supplicant+'与'+d.requestor+'的对接完成，对接物资：'+d.itemName+' '+d.itemCount }}
+               {{d.time+ ' '+ d.supplicant+'与'+d.requestor+'的对接完成，对接物资：'+d.itemName+' '+d.itemCount }}
           </div>
 
        
