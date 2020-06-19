@@ -14,13 +14,19 @@
     <el-row type="flex" class="row-bg">
       <el-col :span="3">
         <div class="grid-content bg-purple">
-          <el-menu-item index>疫情供需平台</el-menu-item>
+          <!-- <el-menu-item index>疫情供需平台</el-menu-item> -->
+          <p class="title">疫情供需平台</p>
         </div>
       </el-col>
 
-      <el-col :span="2" offset="12">
+      <el-col :span="2" offset="10">
         <div class="grid-content bg-purple">
           <el-menu-item index="/">疫情地图</el-menu-item>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple">
+          <el-menu-item index="/sdPage">需求分布图</el-menu-item>
         </div>
       </el-col>
       <el-col :span="2">
@@ -164,5 +170,9 @@ export default {
 }
 .customWith {
   width: 25%;
+}
+.title{
+  color: aliceblue;
+  /* font-size: 20px; */
 }
 </style>

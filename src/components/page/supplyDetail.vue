@@ -210,6 +210,6 @@ export default {
 }
 .dealCard{
   /* margin-top: 20px; */
-  height: 500px;
+  /* height: 500px; */
 }
 </style>

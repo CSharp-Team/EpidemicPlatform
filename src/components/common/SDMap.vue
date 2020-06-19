@@ -175,32 +175,32 @@ export default {
             type: "piecewise",
             pieces: [
               {
-                min: 1002,
+                min: 51,
                 color: "#73240D"
               },
               {
-                min: 501,
-                max: 1001,
+                min: 21,
+                max: 50,
                 color: "#BB0000"
               },
               {
-                min: 251,
-                max: 500,
+                min: 11,
+                max: 20,
                 color: "#BD430A"
               },
               {
-                min: 101,
-                max: 250,
+                min: 6,
+                max: 10,
                 color: "#E08150"
               },
               {
-                min: 11,
-                max: 100,
+                min: 3,
+                max: 5,
                 color: "#E9B090"
               },
               {
                 min: 1,
-                max: 10,
+                max: 2,
                 color: "#F2DDD2"
               },
               {
@@ -319,13 +319,6 @@ export default {
         //点击事件
         if (params.componentType === "series") {
           var provinceName = params.name;
-          // alert(provinceName)
-          // that.$router.push({
-          //   path: "../page/supplyDetail",
-          //   query: {
-          //     province: provinceName
-          //   }
-          // });
           console.log(provinceName)
           this.provinceName=provinceName
           self.getTableData(this.provinceName)
@@ -336,6 +329,17 @@ export default {
     getTableData(name) {
       var url2 = "/g/Need/getNeedsByProvince?province=";
       url2=url2+name
+      var self = this;
+      axios
+        .get(url2)
+        .then(response => {
+          console.log(response);
+          self.demandData = response.data;
+        })
+        .catch(e => self.$message.error(e.response.data));
+    },
+    getAllNeed(){
+        var url2 = "/g/Need/getAllNeed";
       var self = this;
       axios
         .get(url2)
@@ -360,12 +364,13 @@ export default {
   mounted() {
     self=this
     this.getEchartsData()
+    this.getAllNeed()
     // this.mapInit();
   }
 };
 </script>
 
-<style>
+<style scoped>
 #china_map {
   margin-top: 20px;
 }

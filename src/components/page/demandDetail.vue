@@ -95,7 +95,7 @@
             class="text item"
           >
           <div v-if="d.type==='请求' && d.itemCount!='0'">
-             {{ d.requestor+'向'+d.supplicant+'请求了'+d.itemName+' '+d.itemCount }}
+             {{d.time+ ' '+d.requestor+'向'+d.supplicant+'请求了'+d.itemName+' '+d.itemCount }}
           </div>
           <div v-if="d.type==='发货' && d.itemCount!='0'">
                {{ d.supplicant+'向'+d.requestor+'发货'+d.itemName+' '+d.itemCount }}
@@ -136,7 +136,8 @@ export default {
       requestItems: [],
       dynamicData: [],
       requestItems2: [],
-      requestReason: ""
+      requestReason: "",
+      dataLength:0
     };
   },
   methods: {
@@ -162,9 +163,6 @@ export default {
         })
         .catch(e => self.$message.error(e.response.data));
 
-      // console.log("\n\n\n");
-      // console.log(self.dataItems);
-      // console.log("\n\n\n");
     },
     getMatchedData() {
       var url2 = "/g/Supply/needMatch";
@@ -191,7 +189,7 @@ export default {
     onSubmit(item, scope) {
       // this.visible = false;
       scope._self.$refs[`popover-${scope.$index}`].doClose();
-      console.log(item);
+      // console.log(item);
       for (var j = 0; j < self.requestItems.length; j++) {
         self.requestItems2.push({
           ItemId: self.requestItems[j].supplyItemId,
@@ -199,7 +197,6 @@ export default {
           ItemCount: parseInt(self.requestItems[j].count)
         });
       }
-
       console.log("submit!");
 
       var url = "/g/Message/sendFirstRequest";
@@ -209,7 +206,7 @@ export default {
           Recipient: self.matchedData2.user,
           SupplyId: self.matchedData2.supplyId,
           NeedId: parseInt(self.id),
-          Time: "",
+          Time: new Date(),
           Reason: self.requestReason,
           Items: self.requestItems2
         })
@@ -221,6 +218,12 @@ export default {
         })
         .catch(e => self.$message.error(e.response.data));
       self.requestItems2 = [];
+      setTimeout(() => {
+        self.getDynamic()
+      }, 300);
+      
+      
+     
     },
     onRequest() {
       self.visible = true;
@@ -235,23 +238,27 @@ export default {
         self.matchedData2 = JSON.parse(JSON.stringify(data)); //深拷贝
       }
       console.log("self.requestItems");
-      console.log(self.requestItems);
+      // console.log(self.requestItems);
       console.log("self.matchedData2");
-      console.log(self.matchedData2);
+      // console.log(self.matchedData2);
     },
     getDynamic() {
+      self.dynamicData=[]
       var url2 = "/g/Message/getExchangeByNeedId";
       console.log("this.id=" + this.id);
       url2 = url2 + "?id=" + this.id;
       axios
         .get(url2)
         .then(response => {
-          console.log(response);
-          for (var i = 0; i < response.data.length; i++) {
+          // console.log(response);
+          // if(self.dynamicData==[]){
+          for (var i =0; i < response.data.length; i++) {
             self.dynamicData.push(response.data[i]);
-          }
+          }    
+          // self.dataLength=response.data.length;
+          // console.log("self.dataLength:"+self.dataLength)
           console.log("dynamicData");
-          console.log(self.dynamicData);
+          // console.log(self.dynamicData);
         })
         .catch(e => self.$message.error(e.response.data));
     },
@@ -322,7 +329,7 @@ export default {
 }
 .dealCard {
   margin-top: 20px;
-  height: 200px;
+  /* height: 200px; */
 }
 </style>
 
